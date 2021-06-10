@@ -6,6 +6,10 @@ compinit
 autoload -Uz colors
 colors
 
+autoload bashcompinit
+bashcompinit
+source /home/bucci/wp-completion.bash
+
 setopt rm_star_silent
 setopt interactivecomments
 setopt prompt_subst
@@ -34,30 +38,8 @@ esac
 
 # Prompt
 ## Color
-local C_RED="%F{red}"    # 31: red
-local C_CYAN="%F{cyan}"   # 36: cyan
-local C_MAGENTA="%F{magenta}"  # 35: magenta
-local C_RESET="%f"
-
-## for Software Collections
-if [ ${X_SCLS} ]; then
-    SCL="${C_RED}[SCL]${C_RESET} "
-fi
-
-## Define Prompt
-case ${UID} in
-    0)
-        PROMPT='[${C_RED}%B%n%b@${C_RESET}%m] ${SCL}%# '
-        ;;
-    *)
-        PROMPT='[${C_MAGENTA}%B%n%b@${C_RESET}%m] ${SCL}%# '
-        ;;
-esac
-
-# Prompt
-## Color
 local C_ROOT="%F{red}"            # for Root
-local C_SCL="%F{yellow}"             # for using Software Collection Library
+local C_SCL="%F{yellow}"          # for using Software Collection Library
 local C_REMOTE_USER="%F{magenta}" # for Remote General User
 local C_RESET="%f" # color reset
 
