@@ -1,3 +1,2 @@
 # for zsh enviroment files.
-# zsh
-# zsh
+個人用のやつ
