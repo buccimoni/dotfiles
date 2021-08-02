@@ -36,6 +36,12 @@ kterm*|xterm*)
 	;;
 esac 
 
+## Aliase
+alias sudo='sudo '
+alias vi='/bin/vim'
+alias ll='/bin/ls -alF --color=auto'
+alias ..='cd ../'
+
 # Prompt
 ## Color
 local C_ROOT="%F{red}"            # for Root
