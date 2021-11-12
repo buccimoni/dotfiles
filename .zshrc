@@ -41,6 +41,7 @@ alias sudo='sudo '
 alias vi='/bin/vim'
 alias ll='/bin/ls -alF --color=auto'
 alias ..='cd ../'
+alias view='/bin/vim -M'
 
 # Prompt
 ## Color
