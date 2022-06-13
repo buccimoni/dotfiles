@@ -38,10 +38,21 @@ esac
 
 ## Aliase
 alias sudo='sudo '
-alias vi='/bin/vim'
+alias vi='/usr/local/bin/vim'
 alias ll='/bin/ls -alF --color=auto'
 alias ..='cd ../'
-alias view='/bin/vim -M'
+alias view='/usr/local/bin/vim -M'
+
+## LS_COLORS
+export LS_COLORS="$(vivid generate iceberg-dark)"
+
+## Disable Commands
+disable r
+
+## vimpager
+export PAGER=/usr/local/bin/vimpager
+alias less=$PAGER
+alias zless=$PAGER
 
 # Prompt
 ## Color
