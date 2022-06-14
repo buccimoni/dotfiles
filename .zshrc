@@ -10,6 +10,9 @@ autoload bashcompinit
 bashcompinit
 source /home/bucci/wp-completion.bash
 
+setopt auto_list
+setopt auto_menu
+setopt list_types
 setopt rm_star_silent
 setopt interactivecomments
 setopt prompt_subst
