@@ -1,4 +1,4 @@
-# Load Functions
+## Load Functions
 zstyle :compinstall filename '${HOME}/.zshrc'
 autoload -Uz compinit
 compinit
@@ -17,17 +17,17 @@ setopt transient_rprompt
 setopt list_rows_first
 setopt list_types
 
-# History Settings
+## History Settings
 HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
 
-# Like an emacs.
+## Like an emacs.
 bindkey -e
 
 DISABLE_AUTO_UPDATE="true"
 
-# Titlebar
+## Titlebar
 case "${TERM}" in
 kterm*|xterm*)
 	precmd() {
@@ -38,13 +38,10 @@ esac
 
 ## Aliase
 alias sudo='sudo '
-alias vi='/usr/local/bin/vim'
-alias ll='/bin/ls -alF --color=auto'
 alias ..='cd ../'
+alias vi='/usr/local/bin/vim'
 alias view='/usr/local/bin/vim -M'
-
-## LS_COLORS
-export LS_COLORS="$(vivid generate iceberg-dark)"
+alias ll='/bin/ls -alF --color=auto'
 
 ## Disable Commands
 disable r
@@ -54,19 +51,19 @@ export PAGER=/usr/local/bin/vimpager
 alias less=$PAGER
 alias zless=$PAGER
 
-# Prompt
-## Color
+## Prompt
+### Color
 local C_ROOT="%F{red}"            # for Root
 local C_SCL="%F{yellow}"          # for using Software Collection Library
 local C_REMOTE_USER="%F{magenta}" # for Remote General User
 local C_RESET="%f" # color reset
 
-## for Software Collections
+### for Software Collections
 if [ $X_SCLS ]; then
     SCL="${C_SCL}[SCL]${C_RESET} "
 fi
 
-## Define Prompt
+### Define Prompt
 case ${UID} in
     0)
         PROMPT='[${C_ROOT}%B%n%b@${C_RESET}%m] ${SCL}%# '
@@ -76,7 +73,7 @@ case ${UID} in
         ;;
 esac
 
-## Define RPrompt
+### Define RPrompt
 RPROMPT='[%35<...<%~]'
 
 # END
