@@ -1,2 +1,2 @@
-# for zsh enviroment files.
-個人用のやつ
+# dotfiles etc...
+dotfile や vim などの設定ファイル置き場
