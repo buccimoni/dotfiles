@@ -12,6 +12,7 @@ source /home/bucci/wp-completion.bash
 
 setopt auto_list
 setopt auto_menu
+setopt auto_cd
 setopt list_types
 setopt rm_star_silent
 setopt interactivecomments
