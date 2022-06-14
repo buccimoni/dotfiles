@@ -3,4 +3,5 @@
 #export VISUAL=/usr/local/bin/emacs
 export LANG=C
 export LC_CTYPE=en_US.UTF-8
+export EDITOR=/usr/local/bin/vim
 
