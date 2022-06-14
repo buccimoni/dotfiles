@@ -21,7 +21,7 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set incsearch
 set wrapscan
 set hlsearch
-" highlight clear
+" highlight cancel
 nnoremap <ESC><ESC> :nohlsearch<CR>
 " display line
 nnoremap k gk
