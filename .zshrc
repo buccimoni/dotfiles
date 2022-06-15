@@ -101,3 +101,5 @@ if [[ ! -n $TMUX && $- == *l* ]]; then
 fi
 
 # END
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
