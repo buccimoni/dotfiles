@@ -81,7 +81,7 @@ esac
 RPROMPT='[%35<...<%~]'
 
 ## tmux session auto attach
-PERCOL=fzf
+PERCOL=~/.fzf/bin/fzf
 if [[ ! -n $TMUX && $- == *l* ]]; then
   # get the IDs
   ID="`tmux list-sessions`"
