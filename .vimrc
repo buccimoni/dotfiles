@@ -8,6 +8,7 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set hidden
+set modeline
 
 " statusline
 set laststatus=2
@@ -33,3 +34,9 @@ syntax enable
 " Theme
 colorscheme iceberg
 set background=dark
+
+" Plug
+call plug#begin()
+Plug 'chr4/nginx.vim'
+call plug#end()
+
