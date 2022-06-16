@@ -10,16 +10,16 @@ autoload bashcompinit
 bashcompinit
 source /home/bucci/wp-completion.bash
 
-setopt auto_list
-setopt auto_menu
-setopt auto_cd
-setopt list_types
-setopt rm_star_silent
-setopt interactivecomments
-setopt prompt_subst
-setopt transient_rprompt
-setopt list_rows_first
-setopt list_types
+setopt auto_list                # 補完候補一覧表示
+setopt auto_menu                # 補完候補から順に補完
+setopt auto_cd                  # ディレクトリ名のみの入力で cd
+setopt list_types               # 補完候補一覧でファイルタイプ表示
+setopt rm_star_silent           # rm に * が含まれるときに問い合わせない
+setopt interactivecomments      # コマンドラインでもコメントを使う
+setopt prompt_subst             # prompt 変数内の変数を展開する
+setopt transient_rprompt        # カレントの prompt にのみ rprompt を表示
+setopt list_rows_first          # 補完リストを水平にソートして表示
+setopt share_history            # 複数の zsh 間で history を共有
 
 ## History Settings
 HISTFILE=~/.histfile
