@@ -8,7 +8,7 @@ colors
 
 autoload bashcompinit
 bashcompinit
-source /home/bucci/wp-completion.bash
+source ~/wp-completion.bash
 
 setopt auto_list                # 補完候補一覧表示
 setopt auto_menu                # 補完候補から順に補完
@@ -20,11 +20,12 @@ setopt prompt_subst             # prompt 変数内の変数を展開する
 setopt transient_rprompt        # カレントの prompt にのみ rprompt を表示
 setopt list_rows_first          # 補完リストを水平にソートして表示
 setopt share_history            # 複数の zsh 間で history を共有
+setopt hist_ignore_all_dups     # 重複した入力は記録しない
 
 ## History Settings
 HISTFILE=~/.histfile
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=10000                  # Memory に保持される history の件数
+SAVEHIST=100000                 # HISTFILE に保存される history の件数
 
 ## Like an emacs.
 bindkey -e
