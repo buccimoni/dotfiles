@@ -1,2 +1,5 @@
 /.vim/.netrwhist
+/.vim/plugged/
+/.tmux/plugins/tmux-better-mouse-mode/
+/.tmux/plugins/tmux-sensible/
 
