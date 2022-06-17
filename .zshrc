@@ -46,6 +46,7 @@ alias sudo='sudo '
 alias ..='cd ../'
 alias vi='/usr/local/bin/vim'
 alias view='/usr/local/bin/vim -M'
+alias ls='/bin/ls -p --color=auto'
 alias ll='/bin/ls -alF --color=auto'
 
 ## Disable Commands
