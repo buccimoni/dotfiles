@@ -20,7 +20,7 @@ syntax enable                   " Syntax-hilight する
 
 "" statusline
 set laststatus=2                " Statusline を常時表示する
-set statusline=%F\ %m%r%h%w\ %<[%{&fileencoding}]\ [%{&ff}]\ %=[CODE\:0x%02B]\ [%02v,%l/%L]
+set statusline=%F\ %m%r%h%w\ %<[%Y]\ [%{&fileencoding}]\ [%{&ff}]\ %=[CODE\:0x%02B]\ [%02v,%l/%L]
 
 "" Enable True-color
 set termguicolors
