@@ -10,17 +10,9 @@ autoload bashcompinit
 bashcompinit
 source ~/wp-completion.bash
 
-autoload -Uz vcs_info
-zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!"
-zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
-zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
-zstyle ':vcs_info:*' actionformats '[%b|%a]'
-precmd () { vcs_info }
-
 setopt auto_list                # 補完候補一覧表示
 setopt auto_menu                # 補完候補から順に補完
-setopt auto_cd                  # ディレクトリ名のみの入力で cd
+#setopt auto_cd                  # ディレクトリ名のみの入力で cd
 setopt list_types               # 補完候補一覧でファイルタイプ表示
 setopt rm_star_silent           # rm に * が含まれるときに問い合わせない
 setopt interactivecomments      # コマンドラインでもコメントを使う
@@ -87,7 +79,7 @@ case ${UID} in
 esac
 
 ### Define RPrompt
-RPROMPT='${vcs_info_msg_0_} [%35<...<%~]'
+RPROMPT='[%35<...<%~]'
 
 ## tmux session auto attach
 PERCOL=~/.fzf/bin/fzf
