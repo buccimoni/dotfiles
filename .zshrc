@@ -130,5 +130,4 @@ if [ $TMUX ]; then
     zplug load --verbose
 fi
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
