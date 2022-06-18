@@ -22,6 +22,7 @@ setopt transient_rprompt        # カレントの prompt にのみ rprompt を�
 setopt listtypes                # 補完リストでファイルタイプを表示
 setopt share_history            # 複数の zsh 間で history を共有
 setopt hist_ignore_all_dups     # 重複した入力は記録しない
+setopt print_eight_bit          # 日本語ファイル名表示に対応する
 
 ## History Settings
 HISTFILE=~/.histfile
