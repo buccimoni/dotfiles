@@ -104,6 +104,11 @@ if [[ ! -n $TMUX && $- == *l* ]]; then
   fi
 fi
 
+# tmux 使用時は fzf も tmux 用を使用する
+#if [ $TMUX ]; then
+#    export FZF_TMUX=1
+#fi
+
 ## zplug
 # zplug が無ければインストール
 if [ ! -d ~/.zplug ]; then
