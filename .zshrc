@@ -18,7 +18,8 @@ setopt rm_star_silent           # rm に * が含まれるときに問い合わ�
 setopt interactivecomments      # コマンドラインでもコメントを使う
 setopt prompt_subst             # prompt 変数内の変数を展開する
 setopt transient_rprompt        # カレントの prompt にのみ rprompt を表示
-setopt list_rows_first          # 補完リストを水平にソートして表示
+#setopt list_rows_first          # 補完リストを水平にソートして表示
+setopt listtypes                # 補完リストでファイルタイプを表示
 setopt share_history            # 複数の zsh 間で history を共有
 setopt hist_ignore_all_dups     # 重複した入力は記録しない
 
