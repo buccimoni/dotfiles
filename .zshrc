@@ -85,7 +85,7 @@ esac
 RPROMPT='[%35<...<%~]'
 
 ## tmux session auto attach
-PERCOL=~/.zplug/bin/fzf
+PERCOL=~/.fzf/bin/fzf
 if [[ ! -n $TMUX && $- == *l* ]]; then
   # get the IDs
   ID="`tmux list-sessions`"
@@ -119,8 +119,6 @@ fi
 source ~/.zplug/init.zsh
 
 # 使用するプラグインを宣言
-#zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf
-#zplug "junegunn/fzf", from:gh-r, as:command, rename-to:fzf
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
@@ -135,33 +133,8 @@ fi
 # Then, source plugins and add commands to $PATH
 if [ $TMUX ]; then
     zplug load --verbose
+    export FZF_TMUX=1
 fi
 
-## fzf function
-__fzfcmd() {
-  [ -n "$TMUX_PANE" ] && { [ "${FZF_TMUX:-0}" != 0 ] || [ -n "$FZF_TMUX_OPTS" ]; } &&
-    echo "fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:-40%}} -- " || echo "fzf"
-}
 
-fzf-history-widget() {
-  local selected num
-  setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
-  selected=( $(fc -rl 1 | perl -ne 'print if !$seen{(/^\s*[0-9]+\**\s+(.*)/, $1)}++' |
-    FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort,ctrl-z:ignore $FZF_CTRL_R_OPTS --query=${(qqq)LBUFFER} +m" $(__fzfcmd)) )
-  local ret=$?
-  if [ -n "$selected" ]; then
-    num=$selected[1]
-    if [ -n "$num" ]; then
-      zle vi-fetch-history -n $num
-    fi
-  fi
-  zle reset-prompt
-  return $ret
-}
-
-# fzf keybind
-zle     -N            fzf-history-widget
-bindkey -M emacs '^R' fzf-history-widget
-bindkey -M vicmd '^R' fzf-history-widget
-bindkey -M viins '^R' fzf-history-widget
-
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
