@@ -29,6 +29,9 @@ HISTFILE=~/.histfile
 HISTSIZE=10000                  # Memory に保持される history の件数
 SAVEHIST=100000                 # HISTFILE に保存される history の件数
 
+# Use color theme
+export LS_COLORS="$(/usr/local/bin/vivid generate iceberg-dark)"
+
 ## Like an emacs.
 bindkey -e
 
