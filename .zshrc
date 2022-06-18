@@ -136,5 +136,4 @@ if [ $TMUX ]; then
     export FZF_TMUX=1
 fi
 
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
