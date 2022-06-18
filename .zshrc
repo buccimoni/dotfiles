@@ -7,9 +7,9 @@ compinit                        # 補完機能を使用する
 autoload -Uz colors             # 色を使用する
 colors
 
-#autoload bashcompinit
-#bashcompinit
-#source ~/wp-completion.bash
+autoload bashcompinit
+bashcompinit                    # bash の補完機能を使う
+source ~/wp-completion.bash     # wp-cli の補完をする
 
 setopt auto_list                # 補完候補一覧表示
 setopt auto_menu                # 補完候補から順に補完
