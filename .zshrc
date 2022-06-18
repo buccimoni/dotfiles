@@ -1,14 +1,15 @@
 ## Load Functions
+
 zstyle :compinstall filename '${HOME}/.zshrc'
 autoload -Uz compinit
-compinit
+compinit                        # 補完機能を使用する
 
-autoload -Uz colors
+autoload -Uz colors             # 色を使用する
 colors
 
-autoload bashcompinit
-bashcompinit
-source ~/wp-completion.bash
+#autoload bashcompinit
+#bashcompinit
+#source ~/wp-completion.bash
 
 setopt auto_list                # 補完候補一覧表示
 setopt auto_menu                # 補完候補から順に補完
@@ -18,7 +19,6 @@ setopt rm_star_silent           # rm に * が含まれるときに問い合わ�
 setopt interactivecomments      # コマンドラインでもコメントを使う
 setopt prompt_subst             # prompt 変数内の変数を展開する
 setopt transient_rprompt        # カレントの prompt にのみ rprompt を表示
-#setopt list_rows_first          # 補完リストを水平にソートして表示
 setopt listtypes                # 補完リストでファイルタイプを表示
 setopt share_history            # 複数の zsh 間で history を共有
 setopt hist_ignore_all_dups     # 重複した入力は記録しない
@@ -104,6 +104,27 @@ if [[ ! -n $TMUX && $- == *l* ]]; then
   fi
 fi
 
-# END
+## zplug
+# zplug が無ければインストール
+if [ ! -d ~/.zplug ]; then
+    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+fi
+
+# Load
+source ~/.zplug/init.zsh
+
+# 使用するプラグインを宣言
+zplug "zsh-users/zsh-completions"
+
+# 使用するプラグインが無ければインストールする
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+# Then, source plugins and add commands to $PATH
+zplug load --verbose
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
