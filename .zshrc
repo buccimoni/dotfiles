@@ -114,6 +114,8 @@ fi
 source ~/.zplug/init.zsh
 
 # 使用するプラグインを宣言
+zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf
+zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
@@ -129,5 +131,4 @@ fi
 if [ $TMUX ]; then
     zplug load --verbose
 fi
-
 
