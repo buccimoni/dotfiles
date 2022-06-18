@@ -125,6 +125,9 @@ if ! zplug check --verbose; then
 fi
 
 # Then, source plugins and add commands to $PATH
-zplug load --verbose
+if [ $TMUX ]; then
+    zplug load --verbose
+fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
