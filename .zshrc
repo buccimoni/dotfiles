@@ -115,6 +115,7 @@ source ~/.zplug/init.zsh
 
 # 使用するプラグインを宣言
 zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
 # 使用するプラグインが無ければインストールする
 if ! zplug check --verbose; then
