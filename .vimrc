@@ -53,8 +53,10 @@ call plug#end()
 
 "" Airline Settings
 let g:airline_theme='icebergDark'
-let g:airline#extensions#tabline#enabled=1
 let g:airline_powerline_fonts=1
+let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#whitespace#enabled=0
+set ttimeoutlen=50
 nmap <C-p> <Plug>AirlineSelectPrevTab
 nmap <C-n> <Plug>AirlineSelectNextTab
 
