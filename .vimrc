@@ -37,20 +37,24 @@ nnoremap gk k
 nnoremap gj j
 
 "" Theme
-let g:airline_theme='icebergDark'   " airline theme
-"let g:lightline = { 'colorscheme': 'icebergDark' }
-"colorscheme iceberg
-"set background=dark
+colorscheme iceberg
+set background=dark
 
 "" Plug と使用する plugin を記述
 call plug#begin()
 Plug 'cocopon/iceberg.vim'          " (theme) Iceberg
 Plug 'tomasr/molokai'               " (theme) molokai
 Plug 'vim-airline/vim-airline'      " (statusline) airline
+Plug 'vim-airline/vim-airline-themes'      " (statusline) airline
 Plug 'gkeep/iceberg-dark'           " (statusline) iceberg dark (airline theme)
+Plug 'ryanoasis/vim-devicons'       " use Nerd Fonts
 Plug 'chr4/nginx.vim'               " (completion) Nginx 
 call plug#end()
 
-colorscheme iceberg
-set background=dark
+"" Airline Settings
+let g:airline_theme='icebergDark'
+let g:airline#extensions#tabline#enabled=1
+let g:airline_powerline_fonts=1
+nmap <C-p> <Plug>AirlineSelectPrevTab
+nmap <C-n> <Plug>AirlineSelectNextTab
 
