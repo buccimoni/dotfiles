@@ -37,11 +37,15 @@ nnoremap gk k
 nnoremap gj j
 
 "" Theme
+let g:airline_theme='icebergDark'   " airline theme
+"let g:lightline = { 'colorscheme': 'icebergDark' }
 colorscheme iceberg
 set background=dark
 
 "" Plug と使用する plugin を記述
 call plug#begin()
 Plug 'chr4/nginx.vim'
+Plug 'gkeep/iceberg-dark'
+Plug 'vim-airline/vim-airline'
 call plug#end()
 
