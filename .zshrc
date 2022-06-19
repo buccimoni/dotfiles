@@ -11,9 +11,9 @@ autoload bashcompinit           # bash の補完機能を使う
 bashcompinit
 source ~/opt/wp-completion.bash # wp-cli の補完をする
 
-autoload -Uz vcs_info           # PROMPT で Git の情報を使う為に使用
-precmd_vcs_info() { vcs_info }
-precmd_functions+=( precmd_vcs_info )
+#autoload -Uz vcs_info           # PROMPT で Git の情報を使う為に使用
+#precmd_vcs_info() { vcs_info }
+#precmd_functions+=( precmd_vcs_info )
 
 setopt auto_list                # 補完候補一覧表示
 setopt auto_menu                # 補完候補から順に補完
@@ -89,8 +89,9 @@ case ${UID} in
 esac
 
 ### Define RPrompt
-RPROMPT='[%35<...<%~] $vcs_info_msg_0_$vcs_info_msg_1_$vcs_info_msg_2_'
-zstyle ':vcs_info:git:*' formats '%b@%r' '%c%u %m'
+RPROMPT='[%35<...<%~]'
+#RPROMPT='[%35<...<%~] $vcs_info_msg_0_$vcs_info_msg_1_$vcs_info_msg_2_'
+#zstyle ':vcs_info:git:*' formats '%b@%r' '%c%u %m'
 
 ## tmux session auto attach
 PERCOL=~/.fzf/bin/fzf
