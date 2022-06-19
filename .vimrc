@@ -20,7 +20,7 @@ syntax enable                   " Syntax-hilight する
 
 "" statusline
 set laststatus=2                " Statusline を常時表示する
-set statusline=%F\ %m%r%h%w\ %<[%Y]\ [%{&fileencoding}]\ [%{&ff}]\ %=[CODE\:0x%02B]\ [%02v,%l/%L]
+"set statusline=%F\ %m%r%h%w\ %<[%Y]\ [%{&fileencoding}]\ [%{&ff}]\ %=[CODE\:0x%02B]\ [%02v,%l/%L]
 
 "" Enable True-color
 set termguicolors
@@ -39,13 +39,18 @@ nnoremap gj j
 "" Theme
 let g:airline_theme='icebergDark'   " airline theme
 "let g:lightline = { 'colorscheme': 'icebergDark' }
-colorscheme iceberg
-set background=dark
+"colorscheme iceberg
+"set background=dark
 
 "" Plug と使用する plugin を記述
 call plug#begin()
-Plug 'chr4/nginx.vim'
-Plug 'gkeep/iceberg-dark'
-Plug 'vim-airline/vim-airline'
+Plug 'cocopon/iceberg.vim'          " (theme) Iceberg
+Plug 'tomasr/molokai'               " (theme) molokai
+Plug 'vim-airline/vim-airline'      " (statusline) airline
+Plug 'gkeep/iceberg-dark'           " (statusline) iceberg dark (airline theme)
+Plug 'chr4/nginx.vim'               " (completion) Nginx 
 call plug#end()
+
+colorscheme iceberg
+set background=dark
 

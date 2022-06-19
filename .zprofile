@@ -4,4 +4,4 @@
 #fi
 
 ## Enviroment Path
-#export PATH="$PATH:/usr/local/zsh/bin"
+export PATH="$PATH:/home/bucci/.local/bin"
