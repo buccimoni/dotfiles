@@ -1,5 +1,4 @@
 ## Load Functions
-
 zstyle :compinstall filename '${HOME}/.zshrc'
 autoload -Uz compinit           # 補完機能を使用する
 compinit
