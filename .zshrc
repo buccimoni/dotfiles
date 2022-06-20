@@ -50,7 +50,7 @@ kterm*|xterm*)
 	;;
 esac 
 
-## Aliase
+## Alias
 alias sudo='sudo '
 alias ..='cd ../'
 alias vi='/usr/local/bin/vim'
@@ -119,19 +119,20 @@ fi
 #fi
 
 ## zplug
-# zplug が無ければインストール
+### zplug が無ければインストール
 if [ ! -d ~/.zplug ]; then
-    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+    curl -sL --proto-redir -all,https \
+        https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 fi
 
-# Load
+### Load
 source ~/.zplug/init.zsh
 
-# 使用するプラグインを宣言
+### 使用するプラグインを宣言
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
-# 使用するプラグインが無ければインストールする
+### 使用するプラグインが無ければインストールする
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
     if read -q; then
@@ -139,11 +140,12 @@ if ! zplug check --verbose; then
     fi
 fi
 
-# Then, source plugins and add commands to $PATH
+### Then, source plugins and add commands to $PATH
 if [ $TMUX ]; then
     zplug load --verbose
     export FZF_TMUX=1
 fi
 
+## fzf を使用する
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

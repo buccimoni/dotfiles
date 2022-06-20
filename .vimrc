@@ -35,6 +35,9 @@ nnoremap j gj
 nnoremap k gk
 nnoremap gk k
 nnoremap gj j
+" Normal/Visual モード時に C-k でコメントアウトをトグルする
+nmap <C-k> <plug>(caw:hatpos:toggle)
+vmap <C-k> <plug>(caw:hatpos:toggle)
 
 "" Theme
 colorscheme iceberg
@@ -42,15 +45,16 @@ set background=dark
 
 "" Plug と使用する plugin を記述
 call plug#begin()
-Plug 'cocopon/iceberg.vim'          " (theme) Iceberg
-Plug 'tomasr/molokai'               " (theme) molokai
-Plug 'vim-airline/vim-airline'      " (statusline) airline
-Plug 'vim-airline/vim-airline-themes'      " (statusline) airline
-Plug 'gkeep/iceberg-dark'           " (statusline) iceberg dark (airline theme)
-Plug 'ryanoasis/vim-devicons'       " use Nerd Fonts
-Plug 'chr4/nginx.vim'               " (completion) Nginx 
+Plug 'cocopon/iceberg.vim'              " (theme) Iceberg
+Plug 'tomasr/molokai'                   " (theme) molokai
+Plug 'vim-airline/vim-airline'          " (statusline) airline
+Plug 'vim-airline/vim-airline-themes'   " (statusline) airline
+Plug 'gkeep/iceberg-dark'               " (statusline) iceberg dark (airline theme)
+Plug 'ryanoasis/vim-devicons'           " use Nerd Fonts
+Plug 'chr4/nginx.vim'                   " (completion) Nginx 
+Plug 'tyru/caw.vim'                     " (edit) Comment Plugin
 call plug#end()
-
+ 
 "" Airline Settings
 let g:airline_theme='icebergDark'
 let g:airline_powerline_fonts=1
