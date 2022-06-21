@@ -10,9 +10,9 @@ autoload bashcompinit           # bash の補完機能を使う
 bashcompinit
 source ~/opt/wp-completion.bash # wp-cli の補完をする
 
-#autoload -Uz vcs_info           # PROMPT で Git の情報を使う為に使用
-#precmd_vcs_info() { vcs_info }
-#precmd_functions+=( precmd_vcs_info )
+# autoload -Uz vcs_info           # PROMPT で Git の情報を使う為に使用
+# precmd_vcs_info() { vcs_info }
+# precmd_functions+=( precmd_vcs_info )
 
 setopt auto_list                # 補完候補一覧表示
 setopt auto_menu                # 補完候補から順に補完
@@ -44,7 +44,10 @@ DISABLE_AUTO_UPDATE="true"
 case "${TERM}" in
 kterm*|xterm*)
 	precmd() {
+        # send terminal emulator's window name
 	    echo -ne "\033]0;${LOGNAME}@${HOST%%.*}:${PWD}\007"
+        _cup=$(pwd | sed -r "s/^(\/home\/[A-Za-z][-A-Za-z0-9_]*?\/?)(\/.*)?$/~\2/;")
+        RPROMPT="%F{cyan}%f${_cup: -24}%F{cyan}%f"
 	}
 	;;
 esac 
@@ -80,17 +83,25 @@ fi
 ### Define Prompt
 case ${UID} in
     0)
-        PROMPT='[${C_ROOT}%B%n%b@${C_RESET}%m] ${SCL}%# '
+        # PROMPT='[${C_ROOT}%B%n%b@${C_RESET}%m] ${SCL}%# '
+        PROMPT='${SCL}%# '
         ;;
     *)
-        PROMPT='[${C_REMOTE_USER}%B%n%b@${C_RESET}%m] ${SCL}%# '
+        # PROMPT='[${C_REMOTE_USER}%B%n%b@${C_RESET}%m] ${SCL}%# '
+        PROMPT='${SCL}%# '
+        # PROMPT="%B%F{blue}[%(4~|/%2~|%~)/]%f%b %# "
         ;;
 esac
 
 ### Define RPrompt
-RPROMPT='[%35<...<%~]'
-#RPROMPT='[%35<...<%~] $vcs_info_msg_0_$vcs_info_msg_1_$vcs_info_msg_2_'
-#zstyle ':vcs_info:git:*' formats '%b@%r' '%c%u %m'
+RPROMPT=''
+# RPROMPT='[%35<...<%~]'
+# RPROMPT='$vcs_info_msg_0_$vcs_info_msg_1_$vcs_info_msg_2_'
+# zstyle ':vcs_info:git:*' check-for-changes true
+# zstyle ':vcs_info:git:*' formats '[%b@%r] ' '%c%u %m'
+# zstyle ':vcs_info:*' actionformats '[%b|%a]'
+# zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
+
 
 ## tmux session auto attach
 PERCOL=~/.fzf/bin/fzf
