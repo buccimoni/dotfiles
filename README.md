@@ -2,20 +2,8 @@
 
 dotfile や vim などの設定ファイル置き場
 
-## 使い方
-
-clone したディレクトリにリンクを張って使う。
-既存の物を上書きするのであれば `ln -nfs` にする。
-
-```
-SRC=/path/to/dotfiles
-ln -s $SRC/.fzf ~/
-ln -s $SRC/.vim{,rc} ~/
-ln -s $SRC/.tmux{,.conf} ~/
-ln -s $SRC/.z{sh{env,rc},profile} ~/
-```
-
-## vivid のインストール
+## 下準備
+### vivid のインストール
 LS_COLORS を簡単に切り替えることが出来る vivid をインストールしておく。
 
 https://github.com/sharkdp/vivid/releases
@@ -27,7 +15,7 @@ https://github.com/sharkdp/vivid/releases
 
 展開した中にある `vivid` を `/usr/local/bin` 等、パスの通ったところにインストール。
 
-## fzf のインストール
+### fzf のインストール
 
 1. fzf を ~/.fzf に clone して install を実行する。
 
@@ -36,7 +24,7 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 ```
 
-## Vim plugin manager のインストールと設定
+### Vim plugin manager のインストールと設定
 
 1. plug.vim を所定位置に clone する。
 
@@ -51,4 +39,18 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 vim
 :PlugInstall
 ```
+
+## 使い方
+
+clone したディレクトリにリンクを張るなり cp して使う。
+既存の物を上書きするのであれば `ln -nfs` にする。
+
+```
+SRC=/path/to/dotfiles
+ln -s $SRC/.fzf ~/
+ln -s $SRC/.vim{,rc} ~/
+ln -s $SRC/.tmux{,.conf} ~/
+ln -s $SRC/.z{sh{env,rc},profile} ~/
+```
+
 
