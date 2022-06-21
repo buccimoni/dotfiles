@@ -1,7 +1,9 @@
 # dotfiles etc...
+
 dotfile や vim などの設定ファイル置き場
 
 ## 使い方
+
 clone したディレクトリにリンクを張って使う。
 既存の物を上書きするのであれば `ln -nfs` にする。
 
@@ -25,17 +27,28 @@ https://github.com/sharkdp/vivid/releases
 
 展開した中にある `vivid` を `/usr/local/bin` 等、パスの通ったところにインストール。
 
-## vim setting
-1. Install Plugins
+## fzf のインストール
+
+1. fzf を ~/.fzf に clone して install を実行する。
 
 ```
-:PlugInstall
-```
-
-## fzf setting
-1. Install fzf
-
-```
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
+```
+
+## Vim plugin manager のインストールと設定
+
+1. plug.vim を所定位置に clone する。
+
+```
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+```
+
+2. vim を起動してインストールコマンドを入力する。
+
+```
+vim
+:PlugInstall
 ```
 
