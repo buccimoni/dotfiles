@@ -38,15 +38,13 @@ export LS_COLORS="$(/usr/local/bin/vivid generate iceberg-dark)"
 ## Like an emacs.
 bindkey -e
 
-DISABLE_AUTO_UPDATE="true"
-
 ## Titlebar
 case "${TERM}" in
     kterm*|xterm*)
         precmd() {
-            # send terminal emulator's window name
+            # send terminal emulator's window name, tmux pane name.
             echo -ne "\033]0;${LOGNAME}@${HOST%%.*}:${PWD}\007"
-            _cup=$(pwd | sed -r "s/^(\/home\/$USER\/?)(\/.*)?$/~\2/;")
+            _cup=$(pwd | sed "s/^\/home\/$USER/~/;")
             # set an omit string
             if [ ${#_cup} -gt 23 ]; then
                 _dash="";
@@ -63,7 +61,7 @@ esac
 
 ## Alias
 alias sudo='sudo '
-alias ..='cd ../'
+alias ..='cd ..;'
 alias vi='/usr/local/bin/vim'
 alias view='/usr/local/bin/vim -M'
 alias ls='/bin/ls -p --color=auto'
@@ -85,7 +83,7 @@ local C_REMOTE_USER="%F{cyan}" # for Remote General User
 local C_RESET="%f" # color reset
 
 ### for Software Collections
-if [ $X_SCLS ]; then
+if [ ${X_SCLS} ]; then
     SCL="${C_SCL}[SCL]${C_RESET} "
 fi
 
