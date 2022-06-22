@@ -18,6 +18,10 @@ set clipboard+=unnamed          " 自動的に Clipboard を使用する
 set backspace=indent,eol,start  " BackSpace の動作を変更する
 syntax enable                   " Syntax-hilight する
 
+" view の自動保存
+autocmd BufWinLeave ?* silent mkview
+autocmd BufWinEnter ?* silent loadview
+
 "" statusline
 set laststatus=2                " Statusline を常時表示する
 "set statusline=%F\ %m%r%h%w\ %<[%Y]\ [%{&fileencoding}]\ [%{&ff}]\ %=[CODE\:0x%02B]\ [%02v,%l/%L]
