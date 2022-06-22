@@ -46,15 +46,9 @@ case "${TERM}" in
             echo -ne "\033]0;${LOGNAME}@${HOST%%.*}:${PWD}\007"
             _cup=${$(pwd)/#\/home\/$USER/"~"}
             # set an omit string
-            if [[ ${#_cup} -gt 23 ]]; then
-                _dash="";
-            else
-                _dash="";
-            fi
+            [ ${#_cup} -gt 23 ] && _dash="" || _dash=""
 
             RPROMPT="%F{cyan}%f${_dash}${_cup: -23}%F{cyan}%f"
-            # unset _cup
-            # unset _dash
         }
 ;;
 esac 
