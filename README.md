@@ -17,7 +17,7 @@ https://github.com/sharkdp/vivid/releases
 
 ### fzf のインストール
 
-1. fzf を ~/.fzf に clone して install を実行する。
+~/.fzf に clone して install を実行する。
 
 ```
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
@@ -40,17 +40,26 @@ vim
 :PlugInstall
 ```
 
+### vimpager のインストール
+
+clone して sudo make install する。
+
+```
+git clone https://github.com/rkitover/vimpager.git
+cd vimpager
+sudo make install
+```
+
 ## 使い方
 
 clone したディレクトリにリンクを張るなり cp して使う。  
+.tmux/ と .vim/ は適当に待避しておくこと。  
 既存の物を上書きするのであれば `ln -nfs` にする。
 
 ```
 SRC=/path/to/dotfiles
-ln -s $SRC/.fzf ~/
 ln -s $SRC/.vim{,rc} ~/
 ln -s $SRC/.tmux{,.conf} ~/
 ln -s $SRC/.z{sh{env,rc},profile} ~/
 ```
-
 
