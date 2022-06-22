@@ -44,9 +44,9 @@ case "${TERM}" in
         precmd() {
             # send terminal emulator's window name, tmux pane name.
             echo -ne "\033]0;${LOGNAME}@${HOST%%.*}:${PWD}\007"
-            _cup=$(pwd | sed "s/^\/home\/$USER/~/;")
+            _cup=${$(pwd)/#\/home\/$USER/"~"}
             # set an omit string
-            if [ ${#_cup} -gt 23 ]; then
+            if [[ ${#_cup} -gt 23 ]]; then
                 _dash="";
             else
                 _dash="";
