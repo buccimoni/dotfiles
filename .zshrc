@@ -46,7 +46,7 @@ case "${TERM}" in
         precmd() {
             # send terminal emulator's window name
             echo -ne "\033]0;${LOGNAME}@${HOST%%.*}:${PWD}\007"
-            _cup=$(pwd | sed -r "s/^(\/home\/$(whoami)\/?)(\/.*)?$/~\2/;")
+            _cup=$(pwd | sed -r "s/^(\/home\/$USER\/?)(\/.*)?$/~\2/;")
             # set an omit string
             if [ ${#_cup} -gt 23 ]; then
                 _dash="";
@@ -81,7 +81,7 @@ alias zless=$PAGER
 ### Color
 local C_ROOT="%F{red}"            # for Root
 local C_SCL="%F{yellow}"          # for using Software Collection Library
-local C_REMOTE_USER="%F{magenta}" # for Remote General User
+local C_REMOTE_USER="%F{cyan}" # for Remote General User
 local C_RESET="%f" # color reset
 
 ### for Software Collections
@@ -93,11 +93,11 @@ fi
 case ${UID} in
     0)
         # PROMPT='[${C_ROOT}%B%n%b@${C_RESET}%m] ${SCL}%# '
-        PROMPT='${SCL}%# '
+        PROMPT='${SCL}${C_ROOT}%#${C_RESET} '
         ;;
     *)
         # PROMPT='[${C_REMOTE_USER}%B%n%b@${C_RESET}%m] ${SCL}%# '
-        PROMPT='${SCL}%# '
+        PROMPT='${SCL}${C_REMOTE_USER}%#${C_RESET} '
         # PROMPT="%B%F{blue}[%(4~|/%2~|%~)/]%f%b %# "
         ;;
 esac
