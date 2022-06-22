@@ -46,7 +46,7 @@ case "${TERM}" in
         precmd() {
             # send terminal emulator's window name
             echo -ne "\033]0;${LOGNAME}@${HOST%%.*}:${PWD}\007"
-            _cup=$(pwd | sed -r "s/^(\/home\/[A-Za-z][-A-Za-z0-9_]*?\/?)(\/.*)?$/~\2/;")
+            _cup=$(pwd | sed -r "s/^(\/home\/$(whoami)\/?)(\/.*)?$/~\2/;")
             # set an omit string
             if [ ${#_cup} -gt 23 ]; then
                 _dash="";
