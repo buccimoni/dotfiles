@@ -16,7 +16,6 @@ source ~/opt/wp-completion.bash # wp-cli の補完をする
 
 setopt auto_list                # 補完候補一覧表示
 setopt auto_menu                # 補完候補から順に補完
-#setopt auto_cd                  # ディレクトリ名のみの入力で cd
 setopt list_types               # 補完候補一覧でファイルタイプ表示
 setopt rm_star_silent           # rm に * が含まれるときに問い合わせない
 setopt interactivecomments      # コマンドラインでもコメントを使う
@@ -85,13 +84,10 @@ fi
 ### Define Prompt
 case ${UID} in
     0)
-        # PROMPT='[${C_ROOT}%B%n%b@${C_RESET}%m] ${SCL}%# '
         PROMPT='${SCL}${C_ROOT}%#${C_RESET} '
         ;;
     *)
-        # PROMPT='[${C_REMOTE_USER}%B%n%b@${C_RESET}%m] ${SCL}%# '
         PROMPT='${SCL}${C_REMOTE_USER}%#${C_RESET} '
-        # PROMPT="%B%F{blue}[%(4~|/%2~|%~)/]%f%b %# "
         ;;
 esac
 
