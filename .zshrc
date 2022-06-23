@@ -103,6 +103,8 @@ RPROMPT=''
 # zstyle ':vcs_info:*' actionformats '[%b|%a]'
 # zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
 
+## enhancd settings
+export ENHANCD_DISABLE_DOT=1        # "cd .." で enhancd を使用 0:する 1:しない
 
 ## tmux session auto attach
 PERCOL=~/.fzf/bin/fzf
@@ -124,11 +126,6 @@ if [[ ! -n $TMUX && $- == *l* ]]; then
   fi
 fi
 
-# tmux 使用時は fzf も tmux 用を使用する
-#if [ $TMUX ]; then
-#    export FZF_TMUX=1
-#fi
-
 ## zplug
 ### zplug が無ければインストール
 if [ ! -d ~/.zplug ]; then
@@ -141,6 +138,7 @@ source ~/.zplug/init.zsh
 
 ### 使用するプラグインを宣言
 zplug "zsh-users/zsh-completions"
+zplug "b4b4r07/enhancd", use:init.sh
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
 ### 使用するプラグインが無ければインストールする
