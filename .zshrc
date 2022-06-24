@@ -48,7 +48,7 @@ case "${TERM}" in
             # set an omit string
             [ ${#_cup} -gt 23 ] && _dash=""
 
-            RPROMPT="%F{cyan}%f${_dash}${_cup: -23}%F{cyan}%f"
+            RPROMPT="%F{cyan} %f${_dash}${_cup: -23}%F{cyan} %f"
         }
 ;;
 esac 
@@ -99,6 +99,16 @@ RPROMPT=''
 # zstyle ':vcs_info:git:*' formats '[%b@%r] ' '%c%u %m'
 # zstyle ':vcs_info:*' actionformats '[%b|%a]'
 # zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
+
+## functions
+function formatted_path {
+    local dash="";
+    a=$(tmux display-message -p "#{pane_title}" | sed -r "s/^.+?:(.+)$/\1/")
+    [ ${#a} -gt 23 ] && _dash=""
+    a=${a/#\/home\/$USER/"~"}
+    b=${a: -23}
+    echo "${_dash}${b}"
+}
 
 ## enhancd settings
 export ENHANCD_DISABLE_DOT=1        # "cd .." で enhancd を使用 0:する 1:しない
