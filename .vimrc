@@ -39,6 +39,9 @@ nnoremap j gj
 nnoremap k gk
 nnoremap gk k
 nnoremap gj j
+" Space-h と l で行頭と行末に移動するようにする
+nnoremap <Space>h ^
+nnoremap <Space>l $
 " Normal/Visual モード時に C-k でコメントアウトをトグルする
 nmap <C-k> <plug>(caw:hatpos:toggle)
 vmap <C-k> <plug>(caw:hatpos:toggle)
