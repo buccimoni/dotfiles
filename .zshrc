@@ -166,6 +166,6 @@ if [ $TMUX ]; then
 fi
 
 ## fzf を使用する
-export FZF_COMPLETION_TRIGGER='\\'
+export FZF_COMPLETION_TRIGGER='^^'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
