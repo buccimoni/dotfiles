@@ -6,9 +6,11 @@ compinit
 autoload -Uz colors             # 色を使用する
 colors
 
-autoload bashcompinit           # bash の補完機能を使う
-bashcompinit
-source ~/opt/wp-completion.bash # wp-cli の補完をする
+if [[ ${UID} -ne 0 ]]; then         # root では使わない
+    autoload bashcompinit           # bash の補完機能を使う
+    bashcompinit
+    source ~/opt/wp-completion.bash # wp-cli の補完をする
+fi
 
 # autoload -Uz vcs_info           # PROMPT で Git の情報を使う為に使用
 # precmd_vcs_info() { vcs_info }
@@ -31,7 +33,7 @@ HISTFILE=~/.histfile
 HISTSIZE=10000                  # Memory に保持される history の件数
 SAVEHIST=100000                 # HISTFILE に保存される history の件数
 
-# Use color theme
+## Use color theme
 export LS_COLORS="$(/usr/local/bin/vivid generate iceberg-dark)"
 
 ## Like an emacs.
@@ -114,33 +116,34 @@ function formatted_path {
 export ENHANCD_DISABLE_DOT=1        # "cd .." で enhancd を使用 0:する 1:しない
 
 ## tmux session auto attach
-PERCOL=~/.fzf/bin/fzf
-if [[ ! -n $TMUX && $- == *l* ]]; then
-  # get the IDs
-  ID="`tmux list-sessions`"
-  if [[ -z "$ID" ]]; then
-    tmux new-session
-  fi
-  create_new_session="Create New Session"
-  ID="$ID\n${create_new_session}:"
-  ID="`echo $ID | $PERCOL | cut -d: -f1`"
-  if [[ "$ID" = "${create_new_session}" ]]; then
-    tmux new-session
-  elif [[ -n "$ID" ]]; then
-    tmux attach-session -t "$ID"
-  else
-    :  # Start terminal normally
-  fi
+if [[ ${UID} -ne 0 ]]; then
+    PERCOL=~/.fzf/bin/fzf
+    if [[ ! -n $TMUX && $- == *l* ]]; then
+        # get the IDs
+        ID="`tmux list-sessions`"
+        if [[ -z "$ID" ]]; then
+            tmux new-session
+        fi
+        create_new_session="Create New Session"
+        ID="$ID\n${create_new_session}:"
+        ID="`echo $ID | $PERCOL | cut -d: -f1`"
+        if [[ "$ID" = "${create_new_session}" ]]; then
+            tmux new-session
+        elif [[ -n "$ID" ]]; then
+            tmux attach-session -t "$ID"
+        else
+            :  # Start terminal normally
+        fi
+    fi
 fi
 
-## zplug
-### zplug が無ければインストール
+## zplug が無ければインストール
 if [ ! -d ~/.zplug ]; then
     curl -sL --proto-redir -all,https \
         https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 fi
 
-### Load
+## zplug Load
 source ~/.zplug/init.zsh
 
 ### 使用するプラグインを宣言
@@ -163,5 +166,6 @@ if [ $TMUX ]; then
 fi
 
 ## fzf を使用する
+export FZF_COMPLETION_TRIGGER='\\'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

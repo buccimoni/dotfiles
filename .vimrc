@@ -60,6 +60,7 @@ Plug 'gkeep/iceberg-dark'               " (statusline) iceberg dark (airline the
 Plug 'ryanoasis/vim-devicons'           " use Nerd Fonts
 Plug 'chr4/nginx.vim'                   " (completion) Nginx 
 Plug 'tyru/caw.vim'                     " (edit) Comment Plugin
+Plug 'nathanaelkane/vim-indent-guides'  " add indent guide line.
 call plug#end()
  
 "" Airline Settings
@@ -70,4 +71,10 @@ let g:airline#extensions#whitespace#enabled=0
 set ttimeoutlen=50
 nmap <C-p> <Plug>AirlineSelectPrevTab
 nmap <C-n> <Plug>AirlineSelectNextTab
+
+"" vim indent guides Settings
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 1
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
 
