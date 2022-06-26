@@ -49,7 +49,7 @@ case "${TERM}" in
             local _dash=""
             # set an omit string
             [ ${#_cup} -gt 23 ] && _dash=""
-
+            
             RPROMPT="%F{cyan} %f${_dash}${_cup: -23}%F{cyan} %f"
         }
 ;;
