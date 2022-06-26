@@ -61,6 +61,7 @@ Plug 'ryanoasis/vim-devicons'           " use Nerd Fonts
 Plug 'chr4/nginx.vim'                   " (completion) Nginx 
 Plug 'tyru/caw.vim'                     " (edit) Comment Plugin
 Plug 'nathanaelkane/vim-indent-guides'  " add indent guide line.
+Plug 'osyo-manga/vim-over'              " subsutitue highlighter
 call plug#end()
  
 "" Airline Settings
@@ -77,4 +78,8 @@ let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 1
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
+
+"" vim-over Settings
+nnoremap <silent> <Space>s :OverCommandLine<CR>%s//g<Left><Left>
+vnoremap <silent> <Space>s :OverCommandLine<CR>s//g<Left><Left>
 
