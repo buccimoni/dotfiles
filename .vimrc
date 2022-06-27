@@ -52,6 +52,7 @@ set background=dark
 
 "" Plug と使用する plugin を記述
 call plug#begin()
+Plug 'vim-jp/vimdoc-ja'                 " Help in japanese
 Plug 'cocopon/iceberg.vim'              " (theme) Iceberg
 Plug 'tomasr/molokai'                   " (theme) molokai
 Plug 'vim-airline/vim-airline'          " (statusline) airline
@@ -63,6 +64,9 @@ Plug 'tyru/caw.vim'                     " (edit) Comment Plugin
 Plug 'nathanaelkane/vim-indent-guides'  " add indent guide line.
 Plug 'osyo-manga/vim-over'              " subsutitue highlighter
 call plug#end()
+
+"" Help Setting
+set helplang=ja,en
  
 "" Airline Settings
 let g:airline_theme='icebergDark'
