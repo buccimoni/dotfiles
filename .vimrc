@@ -19,8 +19,9 @@ set backspace=indent,eol,start  " BackSpace の動作を変更する
 syntax enable                   " Syntax-hilight する
 
 " view の自動保存
-autocmd BufWinLeave ?* silent mkview
-autocmd BufWinEnter ?* silent loadview
+autocmd BufWritePost * if expand('%') != '' && &buftype !~ 'nofile' | mkview | endif
+autocmd BufRead * if expand('%') != '' && &buftype !~ 'nofile' | silent loadview | endif
+set viewoptions-=options
 
 "" statusline
 set laststatus=2                " Statusline を常時表示する
