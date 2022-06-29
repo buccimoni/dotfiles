@@ -6,13 +6,13 @@ compinit
 autoload -Uz colors             # 色を使用する
 colors
 
-if [[ ${UID} -ne 0 ]]; then         # root では使わない
+if [ ${UID} -ne 0 ]; then           # root では使わない
     autoload bashcompinit           # bash の補完機能を使う
     bashcompinit
     source ~/opt/wp-completion.bash # wp-cli の補完をする
 fi
 
-# autoload -Uz vcs_info           # PROMPT で Git の情報を使う為に使用
+# autoload -Uz vcs_info             # PROMPT で Git の情報を使う為に使用
 # precmd_vcs_info() { vcs_info }
 # precmd_functions+=( precmd_vcs_info )
 
@@ -34,7 +34,7 @@ HISTSIZE=10000                  # Memory に保持される history の件数
 SAVEHIST=100000                 # HISTFILE に保存される history の件数
 
 ## Use color theme
-export LS_COLORS="$(/usr/local/bin/vivid generate iceberg-dark)"
+export LS_COLORS="$(vivid generate iceberg-dark)"
 
 ## Like an emacs.
 bindkey -e
@@ -59,7 +59,6 @@ esac
 alias sudo='sudo '
 alias ..='cd ..;'
 alias vi='/usr/local/bin/vim'
-alias view='/usr/local/bin/vim -M'
 alias ls='/bin/ls -p --color=auto'
 alias ll='/bin/ls -alF --color=auto'
 
@@ -93,24 +92,15 @@ case ${UID} in
         ;;
 esac
 
-### Define RPrompt
-RPROMPT=''
-# RPROMPT='[%35<...<%~]'
-# RPROMPT='$vcs_info_msg_0_$vcs_info_msg_1_$vcs_info_msg_2_'
-# zstyle ':vcs_info:git:*' check-for-changes true
-# zstyle ':vcs_info:git:*' formats '[%b@%r] ' '%c%u %m'
-# zstyle ':vcs_info:*' actionformats '[%b|%a]'
-# zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
-
 ## functions
-function formatted_path {
-    local dash="";
-    a=$(tmux display-message -p "#{pane_title}" | sed -r "s/^.+?:(.+)$/\1/")
-    [ ${#a} -gt 23 ] && _dash=""
-    a=${a/#\/home\/$USER/"~"}
-    b=${a: -23}
-    echo "${_dash}${b}"
-}
+# function formatted_path {
+#     local dash="";
+#     a=$(tmux display-message -p "#{pane_title}" | sed -r "s/^.+?:(.+)$/\1/")
+#     [ ${#a} -gt 23 ] && _dash=""
+#     a=${a/#\/home\/$USER/"~"}
+#     b=${a: -23}
+#     echo "${_dash}${b}"
+# }
 
 ## enhancd settings
 export ENHANCD_DISABLE_DOT=1        # "cd .." で enhancd を使用 0:する 1:しない
@@ -166,6 +156,6 @@ if [ $TMUX ]; then
 fi
 
 ## fzf を使用する
-export FZF_COMPLETION_TRIGGER='^^'
+export FZF_COMPLETION_TRIGGER='^^'          # ^^[Tab] で fzf を使用する
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
