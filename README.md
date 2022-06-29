@@ -12,12 +12,13 @@ https://github.com/sharkdp/vivid/releases
 
 - `x86_64      : vivid-vx.y.z-x86_64-unknown-linux-musl.tar.gz`
 - `arm (32bit) : vivid-vx.y.z-arm-unknown-linux-musleabihf.tar.gz`
+- `Ubuntu      : sudo apt install vivid`
 
-展開した中にある `vivid` を `/usr/local/bin` 等、パスの通ったところにインストール。
+展開した中にある `vivid` をパスの通ったところに入れておく。
 
 ### fzf のインストール
 
-~/.fzf に clone して install を実行する。
+`~/.fzf` に clone して install を実行する。
 
 ```
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
@@ -52,9 +53,9 @@ sudo make install
 
 ## 使い方
 
-clone したディレクトリにリンクを張るなり cp して使う。  
+clone したファイルやディレクトリにリンクを張るなりコピーして使う。  
 .tmux/ と .vim/ は適当に待避しておくこと。  
-既存の物を上書きするのであれば `ln -nfs` にする。
+既存の物を上書きするのであれば `ln -nfs` でも OK。
 
 ```
 SRC=/path/to/dotfiles
