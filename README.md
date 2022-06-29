@@ -3,7 +3,13 @@
 dotfile や vim などの設定ファイル置き場
 
 ## 下準備
+### フォントのインストール
+
+使用しているアイコンの表示には Nerd Font が必須なので、  
+任意の Nerd Font を使用環境に合わせてインストールしておく。
+
 ### vivid のインストール
+
 LS_COLORS を簡単に切り替えることが出来る vivid をインストールしておく。
 
 https://github.com/sharkdp/vivid/releases
