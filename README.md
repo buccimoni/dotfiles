@@ -54,13 +54,15 @@ sudo make install
 ## 使い方
 
 clone したファイルやディレクトリにリンクを張るなりコピーして使う。  
-.tmux/ と .vim/ は適当に待避しておくこと。  
-既存の物を上書きするのであれば `ln -nfs` でも OK。
+必要に応じて既存のファイルはバックアップしておくと良い。
+
+### 使用例
 
 ```
-SRC=/path/to/dotfiles
-ln -s $SRC/.vim{,rc} ~/
-ln -s $SRC/.tmux{,.conf} ~/
-ln -s $SRC/.z{sh{env,rc},profile} ~/
+cd /path/to/any
+git clone --recursive https://github.com/buccimoni/dotfiles.git
+ln -s .vim{,rc} ~/
+ln -s .tmux{,.conf} ~/
+ln -s .z{sh{env,rc},profile} ~/
 ```
 
