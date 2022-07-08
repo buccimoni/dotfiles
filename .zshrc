@@ -138,6 +138,7 @@ source ~/.zplug/init.zsh
 
 ### 使用するプラグインを宣言
 zplug "zsh-users/zsh-completions"
+# zplug "zsh-users/zsh-autosuggestions"
 zplug "b4b4r07/enhancd", use:init.sh
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
