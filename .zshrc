@@ -74,21 +74,25 @@ alias zless=$PAGER
 ### Color
 local C_ROOT="%F{red}"            # for Root
 local C_SCL="%F{yellow}"          # for using Software Collection Library
-local C_REMOTE_USER="%F{cyan}" # for Remote General User
+local C_USER="%F{cyan}"    # for Remote General User
+local C_BRACKETS="%F{cyan}"
+local C_HOST="%F{green}"
 local C_RESET="%f" # color reset
 
 ### for Software Collections
 if [ ${X_SCLS} ]; then
     SCL="${C_SCL}[SCL]${C_RESET} "
+else
+    SCL=""
 fi
 
 ### Define Prompt
 case ${UID} in
     0)
-        PROMPT='${SCL}${C_ROOT}%#${C_RESET} '
+        PROMPT='${SCL}${C_BRACKETS}${C_HOST}%U%m%u${C_BRACKETS} ${C_ROOT}%#${C_RESET} '
         ;;
     *)
-        PROMPT='${SCL}${C_REMOTE_USER}%#${C_RESET} '
+        PROMPT='${SCL}${C_BRACKETS}${C_HOST}%U%m%u${C_BRACKETS} ${C_USER}%#${C_RESET} '
         ;;
 esac
 
