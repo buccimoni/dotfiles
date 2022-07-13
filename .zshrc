@@ -72,12 +72,12 @@ alias zless=$PAGER
 
 ## Prompt
 ### Color
-local C_ROOT="%F{red}"            # for Root
-local C_SCL="%F{yellow}"          # for using Software Collection Library
-local C_USER="%F{cyan}"    # for Remote General User
-local C_BRACKETS="%F{cyan}"
-local C_HOST="%F{green}"
-local C_RESET="%f" # color reset
+C_SCL="%F{yellow}"          # for using Software Collection Library
+C_BRACKETS="%F{cyan}"       # left/right brackets color
+C_ROOT="%F{red}"            # '#' prompt color for Root
+C_USER="%F{cyan}"           # '%' prompt color for Users
+C_HOST="%F{white}"          # hostname color
+C_RESET="%f%k"              # fore/back ground color reset
 
 ### for Software Collections
 if [ ${X_SCLS} ]; then
@@ -89,10 +89,10 @@ fi
 ### Define Prompt
 case ${UID} in
     0)
-        PROMPT='${SCL}${C_BRACKETS}${C_HOST}%U%m%u${C_BRACKETS} ${C_ROOT}%#${C_RESET} '
+        PROMPT='${SCL}${C_BRACKETS}[${C_HOST}%m${C_BRACKETS}] ${C_ROOT}%#${C_RESET} '
         ;;
     *)
-        PROMPT='${SCL}${C_BRACKETS}${C_HOST}%U%m%u${C_BRACKETS} ${C_USER}%#${C_RESET} '
+        PROMPT='${SCL}${C_BRACKETS}[${C_HOST}%m${C_BRACKETS}] ${C_USER}%#${C_RESET} '
         ;;
 esac
 
