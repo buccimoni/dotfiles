@@ -75,7 +75,7 @@ alias zless=$PAGER
 C_SCL="%F{yellow}"          # for using Software Collection Library
 C_BRACKETS="%F{cyan}"       # left/right brackets color
 C_ROOT="%F{red}"            # '#' prompt color for Root
-C_USER="%F{cyan}"           # '%' prompt color for Users
+C_USER="%F{yellow}"         # '%' prompt color for Users
 C_HOST="%F{white}"          # hostname color
 C_RESET="%f%k"              # fore/back ground color reset
 
