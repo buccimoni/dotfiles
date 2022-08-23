@@ -63,6 +63,7 @@ alias ..='cd ..;'
 alias vi='/usr/local/bin/vim'
 alias ls='/bin/ls -p --color=auto'
 alias ll='/bin/ls -alF --color=auto'
+alias l.='/bin/ls -d .* --color=auto'
 
 ## Disable Commands
 disable r
