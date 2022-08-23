@@ -1,5 +1,7 @@
 ## Load Functions
 zstyle :compinstall filename '${HOME}/.zshrc'
+
+_cache_hosts=($(perl -ne 'if (/^([a-zA-Z0-9.-]+),/) { print "$1\n";}' ~/.ssh/known_hosts))
 autoload -Uz compinit           # 補完機能を使用する
 compinit
 
