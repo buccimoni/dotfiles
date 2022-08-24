@@ -109,9 +109,6 @@ esac
 #     echo "${_dash}${b}"
 # }
 
-## enhancd settings
-export ENHANCD_DISABLE_DOT=1        # "cd .." で enhancd を使用 0:する 1:しない
-
 ## tmux session auto attach
 if [[ ${UID} -ne 0 ]]; then
     PERCOL=~/.fzf/bin/fzf
@@ -145,8 +142,8 @@ source ~/.zplug/init.zsh
 
 ### 使用するプラグインを宣言
 zplug "zsh-users/zsh-completions"
-# zplug "zsh-users/zsh-autosuggestions"
 zplug "b4b4r07/enhancd", use:init.sh
+# zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
 ### 使用するプラグインが無ければインストールする
@@ -157,13 +154,22 @@ if ! zplug check --verbose; then
     fi
 fi
 
-### Then, source plugins and add commands to $PATH
-if [ $TMUX ]; then
-    zplug load --verbose
-    export FZF_TMUX=1
-fi
-
 ## fzf を使用する
-export FZF_COMPLETION_TRIGGER='^^'          # ^^[Tab] で fzf を使用する
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+export FZF_DEFAULT_OPTS="--height 40% --border"
+export FZF_COMPLETION_TRIGGER='^^'          # ^^[Tab] で fzf を使用する
+
+if [ $TMUX ]; then                          # tmux 上では fzf-tmux を使うようにする
+    export FZF_TMUX=1
+else
+    export FZF_TMUX=0
+fi
+
+## enhancd の設定
+export ENHANCD_FILTER=fzf-tmux:fzf
+export ENHANCD_DISABLE_DOT=1        # "cd .." で enhancd を使用 0:する 1:しない
+# export ENHANCD_DISABLE_HOME=1       # 引数無しの cd でインタラクティブフィルターを使用 0:する 1:しない
+
+## Then, source plugins and add commands to $PATH
+zplug load --verbose
