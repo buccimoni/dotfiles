@@ -2,21 +2,13 @@
 zstyle :compinstall filename '${HOME}/.zshrc'
 
 _cache_hosts=($(perl -ne 'if (/^([A-z][A-z0-9.-]+)(?:,| )/) { print "$1\n";}' ~/.ssh/known_hosts))
-autoload -Uz compinit           # 補完機能を使用する
-compinit
+autoload -Uz compinit && compinit   # 補完機能を使用する
+autoload -Uz colors && colors       # 色を使用する
 
-autoload -Uz colors             # 色を使用する
-colors
-
-if [ ${UID} -ne 0 ]; then           # root では使わない
-    autoload bashcompinit           # bash の補完機能を使う
-    bashcompinit
-    source ~/opt/wp-completion.bash # wp-cli の補完をする
-fi
-
-# autoload -Uz vcs_info             # PROMPT で Git の情報を使う為に使用
-# precmd_vcs_info() { vcs_info }
-# precmd_functions+=( precmd_vcs_info )
+# if [ ${UID} -ne 0 ]; then           # root では使わない
+#     autoload bashcompinit && bashcompinit   # bash の補完機能を使う
+#     source ~/opt/wp-completion.bash # wp-cli の補完をする
+# fi
 
 setopt auto_list                # 補完候補一覧表示
 setopt auto_menu                # 補完候補から順に補完
@@ -113,21 +105,36 @@ esac
 if [[ ${UID} -ne 0 ]]; then
     PERCOL=~/.fzf/bin/fzf
     if [[ ! -n $TMUX && $- == *l* ]]; then
+        create_new_session="Create New Session"
+        start_terminal_normally="Start terminal normally"
+        
         # get the IDs
         ID="`tmux list-sessions`"
+        
         if [[ -z "$ID" ]]; then
-            tmux new-session
-        fi
-        create_new_session="Create New Session"
-        ID="$ID\n${create_new_session}:"
-        ID="`echo $ID | $PERCOL | cut -d: -f1`"
-        if [[ "$ID" = "${create_new_session}" ]]; then
-            tmux new-session
-        elif [[ -n "$ID" ]]; then
-            tmux attach-session -t "$ID"
+            ID="${start_terminal_normally}\n${create_new_session}:"
         else
-            :  # Start terminal normally
+            ID="$ID\n${start_terminal_normally}\n${create_new_session}:"
         fi
+        
+        ID="`echo $ID | $PERCOL | cut -d: -f1`"
+        case "$ID" in
+            "${create_new_session}" )
+                tmux new-session
+                ;;
+                
+            "${start_terminal_normally}" )
+                :   # through
+                ;;
+                
+            [0-9]* )
+                tmux attach-session -t "$ID"
+                ;;
+                
+            * )
+                :   # through
+                ;;
+        esac
     fi
 fi
 
@@ -146,13 +153,16 @@ zplug "b4b4r07/enhancd", use:init.sh
 # zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
-### 使用するプラグインが無ければインストールする
+### 使用するプラグインが存在しなければインストールする
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
     if read -q; then
         echo; zplug install
     fi
 fi
+
+## Then, source plugins and add commands to $PATH
+zplug load --verbose
 
 ## fzf を使用する
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -171,5 +181,3 @@ export ENHANCD_FILTER=fzf-tmux:fzf
 export ENHANCD_DISABLE_DOT=1        # "cd .." で enhancd を使用 0:する 1:しない
 # export ENHANCD_DISABLE_HOME=1       # 引数無しの cd でインタラクティブフィルターを使用 0:する 1:しない
 
-## Then, source plugins and add commands to $PATH
-zplug load --verbose
