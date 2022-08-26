@@ -7,10 +7,10 @@ autoload -Uz colors && colors       # 色を使用する
 
 fpath=(/usr/share/zsh/site-functions $fpath) 
 
-# if [ ${UID} -ne 0 ]; then           # root では使わない
-#     autoload bashcompinit && bashcompinit   # bash の補完機能を使う
-#     source ~/opt/wp-completion.bash # wp-cli の補完をする
-# fi
+if [ ${UID} -ne 0 ]; then           # root では使わない
+    autoload bashcompinit && bashcompinit   # bash の補完機能を使う
+    source ~/opt/wp-completion.bash # wp-cli の補完をする
+fi
 
 setopt auto_list                # 補完候補一覧表示
 setopt auto_menu                # 補完候補から順に補完
@@ -48,7 +48,7 @@ case "${TERM}" in
             
             RPROMPT="%F{cyan} %f${_dash}${_cup: -23}%F{cyan} %f"
         }
-;;
+        ;;
 esac 
 
 ## Alias
@@ -146,7 +146,7 @@ if [ ! -d ~/.zplug ]; then
         https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 fi
 
-## zplug Load
+### zplug Load
 source ~/.zplug/init.zsh
 
 ### 使用するプラグインを宣言
@@ -163,10 +163,11 @@ if ! zplug check --verbose; then
     fi
 fi
 
-## Then, source plugins and add commands to $PATH
+### Then, source plugins and add commands to $PATH
 zplug load --verbose
 
-## fzf を使用する
+## Plugin settings
+### fzf を使用する
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export FZF_DEFAULT_OPTS="--height 40% --border"
@@ -178,7 +179,7 @@ else
     export FZF_TMUX=0
 fi
 
-## enhancd の設定
+### enhancd の設定
 export ENHANCD_FILTER=fzf-tmux:fzf
 export ENHANCD_DISABLE_DOT=1        # "cd .." で enhancd を使用 0:する 1:しない
 # export ENHANCD_DISABLE_HOME=1       # 引数無しの cd でインタラクティブフィルターを使用 0:する 1:しない
