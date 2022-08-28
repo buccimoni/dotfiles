@@ -1,13 +1,14 @@
 ## Load Functions
 zstyle :compinstall filename '${HOME}/.zshrc'
 
-_cache_hosts=($(perl -ne 'if (/^([A-z][A-z0-9.-]+)(?:,| )/) { print "$1\n";}' ~/.ssh/known_hosts))
 autoload -Uz compinit && compinit   # 補完機能を使用する
 autoload -Uz colors && colors       # 色を使用する
 
 fpath=(/usr/share/zsh/site-functions $fpath) 
 
-if [ ${UID} -ne 0 ]; then           # root では使わない
+# root に適用しない設定
+if [ ${UID} -ne 0 ]; then
+    _cache_hosts=($(perl -ne 'if (/^([A-z][A-z0-9.-]+)(?:,| )/) { print "$1\n";}' ~/.ssh/known_hosts))
     autoload bashcompinit && bashcompinit   # bash の補完機能を使う
     source ~/opt/wp-completion.bash # wp-cli の補完をする
 fi
