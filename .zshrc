@@ -60,6 +60,13 @@ alias ls='/bin/ls -p --color=auto'
 alias ll='/bin/ls -alF --color=auto'
 alias l.='/bin/ls -d .* --color=auto'
 
+alias pip='function _pip(){
+    if [ $1 = "search" ]; then
+        pip_search "$2";
+    else pip "$@";
+    fi;
+}; _pip'
+
 ## Disable Commands
 disable r
 
