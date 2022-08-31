@@ -119,7 +119,7 @@ if [[ ${UID} -ne 0 ]]; then
         start_terminal_normally="Start terminal normally"
         
         # get the IDs
-        ID="`tmux list-sessions`"
+        ID="$(tmux list-sessions)"
         
         if [[ -z "$ID" ]]; then
             ID="${start_terminal_normally}\n${create_new_session}:"
