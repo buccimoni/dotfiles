@@ -83,6 +83,7 @@ C_ROOT="%F{red}"            # '#' prompt color for Root
 C_USER="%F{yellow}"         # '%' prompt color for Users
 C_HOST="%F{white}"          # hostname color
 C_RESET="%f%k"              # fore/back ground color reset
+BRAKETS=""
 
 ### for Software Collections
 if [ ${X_SCLS} ]; then
@@ -94,10 +95,10 @@ fi
 ### Define Prompt
 case ${UID} in
     0)
-        PROMPT='${SCL}${C_BRACKETS}[${C_HOST}%m${C_BRACKETS}] ${C_ROOT}%#${C_RESET} '
+        PROMPT='${SCL}${C_BRACKETS}${BRAKETS:0:1}[${C_HOST}%m${C_BRACKETS}]${BRAKETS:1:1} ${C_ROOT}%#${C_RESET} '
         ;;
     *)
-        PROMPT='${SCL}${C_BRACKETS}[${C_HOST}%m${C_BRACKETS}] ${C_USER}%#${C_RESET} '
+        PROMPT='${SCL}${C_BRACKETS}${BRAKETS:0:1}[${C_HOST}%m${C_BRACKETS}]${BRAKETS:1:1} ${C_USER}%#${C_RESET} '
         ;;
 esac
 
