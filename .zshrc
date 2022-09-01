@@ -4,15 +4,17 @@ zstyle :compinstall filename '${HOME}/.zshrc'
 autoload -Uz compinit && compinit   # 補完機能を使用する
 autoload -Uz colors && colors       # 色を使用する
 
+# RPM パッケージ付属の関数を fpath に追加
 fpath=(/usr/share/zsh/site-functions $fpath) 
 
-# root に適用しない設定
+## root に適用しない設定
 if [ ${UID} -ne 0 ]; then
     _cache_hosts=($(perl -ne 'if (/^([A-z][A-z0-9.-]+)(?:,| )/) { print "$1\n";}' ~/.ssh/known_hosts))
     autoload bashcompinit && bashcompinit   # bash の補完機能を使う
-    source ~/opt/wp-completion.bash # wp-cli の補完をする
+    source ~/opt/wp-completion.bash         # wp-cli の補完をする
 fi
 
+## zsh のオプション設定
 setopt auto_list                # 補完候補一覧表示
 setopt auto_menu                # 補完候補から順に補完
 setopt list_types               # 補完候補一覧でファイルタイプ表示
@@ -25,18 +27,18 @@ setopt share_history            # 複数の zsh 間で history を共有
 setopt hist_ignore_all_dups     # 重複した入力は記録しない
 setopt print_eight_bit          # 日本語ファイル名表示に対応する
 
-## History Settings
+## History の設定
 HISTFILE=~/.histfile
 HISTSIZE=10000                  # Memory に保持される history の件数
 SAVEHIST=100000                 # HISTFILE に保存される history の件数
 
-## Use color theme
+## ls コマンドの表示色を設定
 export LS_COLORS="$(vivid generate iceberg-dark)"
 
-## Like an emacs.
+## Emacs ライクなキーバインドに設定
 bindkey -e
 
-## Titlebar
+## ターミナルのタイトル設定
 case "${TERM}" in
     kterm*|xterm*)
         precmd() {
@@ -53,7 +55,7 @@ case "${TERM}" in
 esac 
 
 ## Alias
-alias sudo='sudo '
+# alias sudo='sudo '
 alias ..='cd ..;'
 alias vi='/usr/local/bin/vim'
 alias ls='/bin/ls -p --color=auto'
@@ -164,7 +166,7 @@ zplug "b4b4r07/enhancd", use:init.sh
 # zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
-### 使用するプラグインが存在しなければインストールする
+### 使用するプラグインが存在しなければインストール
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
     if read -q; then
