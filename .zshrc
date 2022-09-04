@@ -33,6 +33,12 @@ HISTSIZE=10000                  # Memory に保持される history の件数
 SAVEHIST=100000                 # HISTFILE に保存される history の件数
 
 ## ls コマンドの表示色を設定
+# - Download
+# https://github.com/sharkdp/vivid/releases
+# - Install (x86_64)
+# tar xzf vivid-vx.y.z-x86_64-unknown-linux-musl.tar.gz
+# cd vivid-vivid-vx.y.z-x86_64-unknown-linux-musl
+# sudo cp vivid /usr/local/bin
 export LS_COLORS="$(vivid generate iceberg-dark)"
 
 ## Emacs ライクなキーバインドに設定
@@ -55,24 +61,28 @@ case "${TERM}" in
 esac 
 
 ## Alias
-# alias sudo='sudo '
+alias sudo='sudo '
 alias ..='cd ..;'
 alias vi='/usr/local/bin/vim'
 alias ls='/bin/ls -p --color=auto'
 alias ll='/bin/ls -alF --color=auto'
 alias l.='/bin/ls -d .* --color=auto'
 
-alias pip='function _pip(){
-    if [ $1 = "search" ]; then
-        pip_search "$2";
-    else pip "$@";
-    fi;
-}; _pip'
+# alias pip='function _pip(){
+#     if [ $1 = "search" ]; then
+#         pip_search "$2";
+#     else pip "$@";
+#     fi;
+# }; _pip'
 
 ## Disable Commands
 disable r
 
 ## vimpager
+# - Install
+# git clone https://github.com/rkitover/vimpager.git
+# cd vimpager
+# sudo make install
 export PAGER=/usr/local/bin/vimpager
 alias less=$PAGER
 alias zless=$PAGER
