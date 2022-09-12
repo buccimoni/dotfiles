@@ -128,7 +128,7 @@ esac
 
 ## tmux session auto attach
 if [[ ${UID} -ne 0 ]]; then
-    PERCOL=~/.fzf/bin/fzf
+    PERCOL=$(which fzf)
     if [[ ! -n $TMUX && $- == *l* ]]; then
         create_new_session="Create New Session"
         start_terminal_normally="Start terminal normally"
@@ -173,12 +173,19 @@ fi
 source ~/.zplug/init.zsh
 
 ### 使用するプラグインを宣言
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug "zsh-users/zsh-completions"
 zplug "b4b4r07/enhancd", use:init.sh
 # zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "junegunn/fzf", \
+    from:github, \
+    as:command, \
+    use:bin/fzf, \
+    hook-build:"$ZPLUG_HOME/repos/junegunn/fzf/install --all"
 
 ### 使用するプラグインが存在しなければインストール
+# fzf インストール時はしばし待つ
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
     if read -q; then
@@ -186,12 +193,11 @@ if ! zplug check --verbose; then
     fi
 fi
 
-### Then, source plugins and add commands to $PATH
+### plugin を読み込んでパスを通す
 zplug load --verbose
 
 ## Plugin settings
 ### fzf を使用する
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export FZF_DEFAULT_OPTS="--height 40% --border"
 export FZF_COMPLETION_TRIGGER='^^'          # ^^[Tab] で fzf を使用する
@@ -207,3 +213,4 @@ export ENHANCD_FILTER=fzf-tmux:fzf
 export ENHANCD_DISABLE_DOT=1        # "cd .." で enhancd を使用 0:する 1:しない
 # export ENHANCD_DISABLE_HOME=1       # 引数無しの cd でインタラクティブフィルターを使用 0:する 1:しない
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

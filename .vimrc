@@ -64,8 +64,8 @@ Plug 'chr4/nginx.vim'                   " (completion) Nginx
 Plug 'tyru/caw.vim'                     " (edit) Comment Plugin
 Plug 'nathanaelkane/vim-indent-guides'  " add indent guide line.
 Plug 'osyo-manga/vim-over'              " subsutitue highlighter
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+Plug '~/.zplug/repos/junegunn/fzf'
+Plug 'junegunn/fzf.vim'                 " zplug で install した fzf を使う
 call plug#end()
 
 "" Help Setting
