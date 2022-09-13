@@ -128,7 +128,7 @@ esac
 
 ## tmux session auto attach
 if [[ ${UID} -ne 0 ]]; then
-    PERCOL=$(which fzf)
+    PERCOL=~/.zplug/repos/junegunn/fzf/bin/fzf
     if [[ ! -n $TMUX && $- == *l* ]]; then
         create_new_session="Create New Session"
         start_terminal_normally="Start terminal normally"
