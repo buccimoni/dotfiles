@@ -1,4 +1,4 @@
-"" Basic Settings
+"" 基本設定
 set encoding=utf-8              " 文字エンコーディング
 set nobackup                    " backup 無効化
 set noswapfile                  " swap ファイル無効化
@@ -23,11 +23,11 @@ autocmd BufWritePost * if expand('%') != '' && &buftype !~ 'nofile' | mkview | e
 autocmd BufRead * if expand('%') != '' && &buftype !~ 'nofile' | silent loadview | endif
 set viewoptions-=options
 
-"" statusline
+"" statusline の設定
 set laststatus=2                " Statusline を常時表示する
 "set statusline=%F\ %m%r%h%w\ %<[%Y]\ [%{&fileencoding}]\ [%{&ff}]\ %=[CODE\:0x%02B]\ [%02v,%l/%L]
 
-"" Enable True-color
+"" True-color 表示設定
 set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
@@ -64,23 +64,23 @@ Plug 'chr4/nginx.vim'                   " (completion) Nginx
 Plug 'tyru/caw.vim'                     " (edit) Comment Plugin
 Plug 'nathanaelkane/vim-indent-guides'  " add indent guide line.
 Plug 'osyo-manga/vim-over'              " subsutitue highlighter
-Plug '~/.zplug/repos/junegunn/fzf'
-Plug 'junegunn/fzf.vim'                 " zplug で install した fzf を使う
+Plug '~/.zplug/repos/junegunn/fzf'      " zplug で install した fzf を使う
+Plug 'junegunn/fzf.vim'                 " 
 call plug#end()
 
-"" Help Setting
+"" Help の言語設定
 set helplang=ja,en
  
-"" Airline Settings
+"" Airline 設定
 let g:airline_theme='icebergDark'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#whitespace#enabled=0
 set ttimeoutlen=50
-nmap <C-p> <Plug>AirlineSelectPrevTab
-nmap <C-n> <Plug>AirlineSelectNextTab
+nmap <C-p> <Plug>AirlineSelectPrevTab   " C-p で前のタブに移動する
+nmap <C-n> <Plug>AirlineSelectNextTab   " C-n で次のタブに移動する
 
-"" vim indent guides Settings
+"" vim indent guides でインデントの可視化
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_start_level = 2
@@ -88,7 +88,7 @@ let g:indent_guides_guide_size = 1
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#1e2132 ctermbg=17
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#2e313f ctermbg=18
 
-"" vim-over Settings
+"" vim-over を用いた置換を行う際のキー設定
 nnoremap <silent> <Space>s :OverCommandLine<CR>%s//g<Left><Left>
 vnoremap <silent> <Space>s :OverCommandLine<CR>s//g<Left><Left>
 
