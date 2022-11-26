@@ -60,7 +60,8 @@ Plug 'vim-airline/vim-airline'          " (statusline) airline
 Plug 'vim-airline/vim-airline-themes'   " (statusline) airline
 Plug 'gkeep/iceberg-dark'               " (statusline) iceberg dark (airline theme)
 Plug 'ryanoasis/vim-devicons'           " use Nerd Fonts
-Plug 'chr4/nginx.vim'                   " (completion) Nginx 
+Plug 'chr4/nginx.vim'                   " (syntax) Nginx 
+Plug 'egberts/vim-syntax-bind-named'    " (syntax) ISC bind
 Plug 'tyru/caw.vim'                     " (edit) Comment Plugin
 Plug 'nathanaelkane/vim-indent-guides'  " add indent guide line.
 Plug 'osyo-manga/vim-over'              " subsutitue highlighter
