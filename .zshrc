@@ -199,7 +199,7 @@ zplug load --verbose
 ## Plugin settings
 ### fzf を使用する
 export FZF_DEFAULT_OPTS="--height 40% --border"
-export FZF_TMUX_OPTS="-x 2 -y 2 -p 80%"               # 80% サイズのポップアップで表示する
+export FZF_TMUX_OPTS="-x 20 -p 80%"               # 80% サイズのポップアップで表示する
 export FZF_COMPLETION_TRIGGER='^^'          # ^^[Tab] で fzf を使用する
 
 if [ $TMUX ]; then                          # tmux 上では fzf-tmux を使うようにする
