@@ -56,6 +56,8 @@ case "${TERM}" in
             [ ${#_cup} -gt 23 ] && _dash=""
             
             RPROMPT="%F{cyan} %f${_dash}${_cup: -23}%F{cyan} %f"
+            # for Tabby
+            echo -n "\x1b]1337;CurrentDir=$(pwd)\x07"
         }
         ;;
 esac 
