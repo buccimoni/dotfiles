@@ -67,9 +67,10 @@ alias sudo='sudo '
 alias ..='cd ..;'
 alias vi='/usr/local/bin/vim'
 alias ls='/bin/ls -p --color=auto'
-alias ll='/bin/ls -alF --color=auto'
-alias l.='/bin/ls -d .* --color=auto'
-alias ll.='/bin/ls -dl .* --color=auto'
+alias ll='colorls -al'
+# alias ll='/bin/ls -alF --color=auto'
+alias l.='colorls -d .* --color=auto'
+alias ll.='colorls -dl .* --color=auto'
 alias diff='/usr/bin/colordiff'
 
 # alias pip='function _pip(){
@@ -118,16 +119,6 @@ case ${UID} in
         ;;
 esac
 
-## functions
-# function formatted_path {
-#     local dash="";
-#     a=$(tmux display-message -p "#{pane_title}" | sed -r "s/^.+?:(.+)$/\1/")
-#     [ ${#a} -gt 23 ] && _dash=""
-#     a=${a/#\/home\/$USER/"~"}
-#     b=${a: -23}
-#     echo "${_dash}${b}"
-# }
-
 ## tmux session auto attach
 if [[ ${UID} -ne 0 ]]; then
     PERCOL=~/.zplug/bin/fzf
@@ -136,7 +127,7 @@ if [[ ${UID} -ne 0 ]]; then
         start_terminal_normally="Start terminal normally"
         
         # get the IDs
-        ID="$(tmux list-sessions)"
+        ID="$(tmux list-sessions 2> /dev/null)"
         
         if [[ -z "$ID" ]]; then
             ID="${start_terminal_normally}\n${create_new_session}:"
@@ -201,7 +192,7 @@ zplug load --verbose
 ## Plugin settings
 ### fzf を使用する
 export FZF_DEFAULT_OPTS="--height 40% --border"
-export FZF_TMUX_OPTS="-x 20 -p 80%"               # 80% サイズのポップアップで表示する
+export FZF_TMUX_OPTS="-x 20 -p 80%"         # 80% サイズのポップアップで表示する
 export FZF_COMPLETION_TRIGGER='^^'          # ^^[Tab] で fzf を使用する
 
 if [ $TMUX ]; then                          # tmux 上では fzf-tmux を使うようにする
@@ -216,3 +207,4 @@ export ENHANCD_DISABLE_DOT=1        # "cd .." で enhancd を使用 0:する 1:�
 # export ENHANCD_DISABLE_HOME=1       # 引数無しの cd でインタラクティブフィルターを使用 0:する 1:しない
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
