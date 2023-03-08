@@ -1,1 +1,24 @@
-/home/bucci/.config/sheldon/plugins.toml
+shell = "zsh"
+
+[plugins]
+[plugins.zsh-defer]
+github = 'romkatv/zsh-defer'
+apply = ['source']
+
+[plugins.zsh-syntax-highlighting]
+github = 'zsh-users/zsh-syntax-highlighting'
+apply = ['defer']
+
+[plugins.enhancd]
+github = 'b4b4r07/enhancd'
+
+[plugins.fzf]
+github = "junegunn/fzf"
+apply = ['fzf-install', 'fzf-source']
+
+[templates]
+PATH = 'export PATH="$PATH:{{ dir }}"'
+defer = "{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}"
+fzf-install = "[[ ! -e {{ dir }}/bin/fzf ]] && {{ dir }}/install --bin\n[[ ! $PATH =~ {{ dir }} ]] && export PATH=\"$PATH:{{ dir }}/bin\"\n"
+fzf-source = "{% for file in files %}source \"{{ file }}\"\n{% endfor %}"
+
