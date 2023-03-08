@@ -73,13 +73,6 @@ alias l.='colorls -d .* --color=auto'
 alias ll.='colorls -dl .* --color=auto'
 alias diff='/usr/bin/colordiff'
 
-# alias pip='function _pip(){
-#     if [ $1 = "search" ]; then
-#         pip_search "$2";
-#     else pip "$@";
-#     fi;
-# }; _pip'
-
 ## Disable Commands
 disable r
 
@@ -121,7 +114,7 @@ esac
 
 ## tmux session auto attach
 if [[ ${UID} -ne 0 ]]; then
-    PERCOL=~/.zplug/bin/fzf
+    FZF=~/.local/share/sheldon/repos/github.com/junegunn/fzf/bin/fzf
     if [[ ! -n $TMUX && $- == *l* ]]; then
         create_new_session="Create New Session"
         start_terminal_normally="Start terminal normally"
@@ -135,7 +128,7 @@ if [[ ${UID} -ne 0 ]]; then
             ID="$ID\n${start_terminal_normally}\n${create_new_session}:"
         fi
         
-        ID="`echo $ID | $PERCOL | cut -d: -f1`"
+        ID="`echo $ID | $FZF | cut -d: -f1`"
         case "$ID" in
             "${create_new_session}" )
                 tmux new-session
@@ -156,38 +149,8 @@ if [[ ${UID} -ne 0 ]]; then
     fi
 fi
 
-## zplug が無ければインストール
-if [ ! -d ~/.zplug ]; then
-    curl -sL --proto-redir -all,https \
-        https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-fi
-
-### zplug Load
-source ~/.zplug/init.zsh
-
-### 使用するプラグインを宣言
-zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-zplug "zsh-users/zsh-completions"
-zplug "b4b4r07/enhancd", use:init.sh
-# zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "junegunn/fzf", \
-    from:github, \
-    as:command, \
-    use:bin/fzf, \
-    hook-build:"$ZPLUG_HOME/repos/junegunn/fzf/install --all"
-
-### 使用するプラグインが存在しなければインストール
-# fzf インストール時はしばし待つ
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
-
 ### plugin を読み込んでパスを通す
-zplug load --verbose
+eval "$(sheldon source)"
 
 ## Plugin settings
 ### fzf を使用する
@@ -205,6 +168,4 @@ fi
 export ENHANCD_FILTER=fzf-tmux:fzf
 export ENHANCD_DISABLE_DOT=1        # "cd .." で enhancd を使用 0:する 1:しない
 # export ENHANCD_DISABLE_HOME=1       # 引数無しの cd でインタラクティブフィルターを使用 0:する 1:しない
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
