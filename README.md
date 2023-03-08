@@ -8,6 +8,14 @@ dotfile や vim などの設定ファイル置き場
 使用しているアイコンの表示には Nerd Font が必須なので、  
 任意の Nerd Font を使用環境に合わせてインストールしておく。
 
+### Sheldon のインストール
+Plugin manager として Sheldon を使用しているのでインストールしておく。
+
+```
+curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/crate.sh \
+    | bash -s -- --repo rossmacarthur/sheldon --to ~/.local/bin
+```
+
 ### vivid のインストール
 
 LS_COLORS を簡単に切り替えることが出来る vivid をインストールしておく。
@@ -21,15 +29,6 @@ https://github.com/sharkdp/vivid/releases
 - `Ubuntu      : sudo apt install vivid`
 
 展開した中にある `vivid` をパスの通ったところに入れておく。
-
-### fzf のインストール
-
-`~/.fzf` に clone して install を実行する。
-
-```
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
-```
 
 ### Vim plugin manager のインストールと設定
 
@@ -70,5 +69,6 @@ git clone --recursive https://github.com/buccimoni/dotfiles.git
 ln -s .vim{,rc} ~/
 ln -s .tmux{,.conf} ~/
 ln -s .z{sh{env,rc},profile} ~/
+ln -s plugins.toml ~/.config/sheldon/plugins.toml
 ```
 
