@@ -1,8 +1,11 @@
+autoload -Uz compinit && compinit
+autoload -Uz colors && colors
+
+## RPM パッケージ付属の関数を fpath に追加
+fpath=(/usr/share/zsh/site-functions $fpath) 
+
 ## Load Plugins
 eval "$(sheldon source)"
-
-# RPM パッケージ付属の関数を fpath に追加
-fpath=(/usr/share/zsh/site-functions $fpath) 
 
 ## root に適用しない設定
 if [ ${UID} -ne 0 ]; then
