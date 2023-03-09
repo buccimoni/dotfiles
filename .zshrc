@@ -63,11 +63,10 @@ esac
 alias sudo='sudo '
 alias ..='cd ..;'
 alias vi='/usr/local/bin/vim'
-alias ls='/bin/ls -p --color=auto'
-alias ll='colorls -al'
-# alias ll='/bin/ls -alF --color=auto'
-alias l.='colorls -d .* --color=auto'
-alias ll.='colorls -dl .* --color=auto'
+alias ls='lsd -F'
+alias ll='lsd -alF'
+alias l.='lsd -d .* --color=auto'
+alias ll.='lsd -dl .* --color=auto'
 alias diff='/usr/bin/colordiff'
 
 ## Disable Commands
@@ -152,8 +151,8 @@ fi
 ### fzf を使用する
 export FZF_DEFAULT_OPTS="--height 40% --border"
 export FZF_TMUX_OPTS="-x 20 -p 80%"         # 80% サイズのポップアップで表示する
-# export FZF_COMPLETION_TRIGGER='^^'          # ^^[Tab] で fzf を使用する
-export FZF_COMPLETION_TRIGGER='**'          # ^^[Tab] で fzf を使用する
+export FZF_COMPLETION_TRIGGER='^^'          # ^^[Tab] で fzf を使用する
+# export FZF_COMPLETION_TRIGGER='**'          # ^^[Tab] で fzf を使用する
 
 if [ $TMUX ]; then                          # tmux 上では fzf-tmux を使うようにする
     export FZF_TMUX=1
