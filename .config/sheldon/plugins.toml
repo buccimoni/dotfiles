@@ -17,6 +17,7 @@ apply = ['defer']
 
 [plugins.enhancd]
 github = 'b4b4r07/enhancd'
+apply = ['defer']
 
 [plugins.fzf]
 github = 'junegunn/fzf'
