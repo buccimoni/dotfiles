@@ -5,6 +5,12 @@ shell = "zsh"
 github = 'romkatv/zsh-defer'
 apply = ['source']
 
+[plugins.compinit]
+inline = 'autoload -Uz compinit && compinit'
+
+[plugins.colors]
+inline = 'autoload -Uz colors && zsh-defer colors'
+
 [plugins.zsh-syntax-highlighting]
 github = 'zsh-users/zsh-syntax-highlighting'
 apply = ['defer']
@@ -13,7 +19,7 @@ apply = ['defer']
 github = 'b4b4r07/enhancd'
 
 [plugins.fzf]
-github = "junegunn/fzf"
+github = 'junegunn/fzf'
 apply = ['fzf-install', 'fzf-source']
 
 [templates]

@@ -1,8 +1,5 @@
-## Load Functions
-zstyle :compinstall filename '${HOME}/.zshrc'
-
-autoload -Uz compinit && compinit   # 補完機能を使用する
-autoload -Uz colors && colors       # 色を使用する
+## Load Plugins
+eval "$(sheldon source)"
 
 # RPM パッケージ付属の関数を fpath に追加
 fpath=(/usr/share/zsh/site-functions $fpath) 
@@ -150,13 +147,13 @@ if [[ ${UID} -ne 0 ]]; then
 fi
 
 ### plugin を読み込んでパスを通す
-eval "$(sheldon source)"
 
 ## Plugin settings
 ### fzf を使用する
 export FZF_DEFAULT_OPTS="--height 40% --border"
 export FZF_TMUX_OPTS="-x 20 -p 80%"         # 80% サイズのポップアップで表示する
-export FZF_COMPLETION_TRIGGER='^^'          # ^^[Tab] で fzf を使用する
+# export FZF_COMPLETION_TRIGGER='^^'          # ^^[Tab] で fzf を使用する
+export FZF_COMPLETION_TRIGGER='**'          # ^^[Tab] で fzf を使用する
 
 if [ $TMUX ]; then                          # tmux 上では fzf-tmux を使うようにする
     export FZF_TMUX=1
