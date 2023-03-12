@@ -68,8 +68,8 @@ alias ..='cd ..;'
 alias vi='/usr/local/bin/vim'
 alias ls='lsd -F'
 alias ll='lsd -alF'
-alias l.='lsd -d .* --color=auto'
-alias ll.='lsd -dl .* --color=auto'
+alias l.='lsd -dF .*'
+alias ll.='lsd -dlF .*'
 alias diff='/usr/bin/colordiff'
 
 ## Disable Commands
