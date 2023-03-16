@@ -71,6 +71,9 @@ alias ll='lsd -alF'
 alias l.='lsd -dF .*'
 alias ll.='lsd -dlF .*'
 alias diff='/usr/bin/colordiff'
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
 
 ## Disable Commands
 disable r
