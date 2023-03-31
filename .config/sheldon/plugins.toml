@@ -17,6 +17,10 @@ apply = ['defer']
 github = 'junegunn/fzf'
 apply = ['fzf-install', 'fzf-source']
 
+# [plugins.zsh-autocomplete]
+# github = 'marlonrichert/zsh-autocomplete'
+# apply = ['defer']
+
 [templates]
 PATH = 'export PATH="$PATH:{{ dir }}"'
 defer = "{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}"
