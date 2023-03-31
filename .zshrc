@@ -75,6 +75,9 @@ alias diff='/usr/bin/colordiff'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
+alias gpl='git pull'
+alias gca='git commit -a'
+alias gps='git push'
 
 ## Disable Commands
 disable r
