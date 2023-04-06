@@ -177,7 +177,7 @@ export ENHANCD_ENABLE_DOUBLE_DOT=false      # "cd .." で enhancd を使用 0:�
 # export ENHANCD_DISABLE_HOME=1       # 引数無しの cd でインタラクティブフィルターを使用 0:する 1:しない
 
 # ホスト別のカスタムが出来るように
-zshrc_local=~/.zsh/.zshrc_local
+zshrc_local=~/.zsh/.zshrc.local
 if [ -f $zshrc_local ]; then
     source $zshrc_local
 fi
