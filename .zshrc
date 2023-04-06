@@ -176,3 +176,9 @@ export ENHANCD_FILTER=fzf-tmux:fzf
 export ENHANCD_ENABLE_DOUBLE_DOT=false      # "cd .." で enhancd を使用 0:する 1:しない
 # export ENHANCD_DISABLE_HOME=1       # 引数無しの cd でインタラクティブフィルターを使用 0:する 1:しない
 
+# ホスト別のカスタムが出来るように
+zshrc_local=~/.zsh/.zshrc_local
+if [ -f $zshrc_local ]; then
+    source $zshrc_local
+fi
+
