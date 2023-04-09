@@ -7,13 +7,6 @@ fpath=(/usr/share/zsh/site-functions $fpath)
 ## Load Plugins
 eval "$(sheldon source)"
 
-## root に適用しない設定
-if [ ${UID} -ne 0 ]; then
-    _cache_hosts=($(perl -ne 'if (/^([A-z][A-z0-9.-]+)(?:,| )/) { print "$1\n";}' ~/.ssh/known_hosts))
-    autoload bashcompinit && bashcompinit   # bash の補完機能を使う
-    source ~/opt/wp-completion.bash         # wp-cli の補完をする
-fi
-
 ## zsh のオプション設定
 setopt auto_list                # 補完候補一覧表示
 setopt auto_menu                # 補完候補から順に補完
