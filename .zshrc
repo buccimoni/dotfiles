@@ -49,7 +49,7 @@ case "${TERM}" in
     kterm*|xterm*)
         precmd() {
             # send terminal emulator's window name, tmux pane name.
-            # echo -ne "\033]0;${LOGNAME}@${HOST%%.*}:${PWD}\007"
+            echo -ne "\033]0;${LOGNAME}@${HOST%%.*}:${PWD}\007"
             # local _cup=${$(pwd)/#\/home\/$USER/"~"}
             # local _dash=""
             # # set an omit string
