@@ -49,13 +49,13 @@ case "${TERM}" in
     kterm*|xterm*)
         precmd() {
             # send terminal emulator's window name, tmux pane name.
-            echo -ne "\033]0;${LOGNAME}@${HOST%%.*}:${PWD}\007"
-            local _cup=${$(pwd)/#\/home\/$USER/"~"}
-            local _dash=""
-            # set an omit string
-            [ ${#_cup} -gt 23 ] && _dash=""
-            
-            RPROMPT="%F{cyan} %f${_dash}${_cup: -23}%F{cyan} %f"
+            # echo -ne "\033]0;${LOGNAME}@${HOST%%.*}:${PWD}\007"
+            # local _cup=${$(pwd)/#\/home\/$USER/"~"}
+            # local _dash=""
+            # # set an omit string
+            # [ ${#_cup} -gt 23 ] && _dash=""
+            # 
+            # RPROMPT="%F{cyan} %f${_dash}${_cup: -23}%F{cyan} %f"
             # for Tabby
             echo -n "\x1b]1337;CurrentDir=$(pwd)\x07"
         }
@@ -110,14 +110,14 @@ else
 fi
 
 ### Define Prompt
-case ${UID} in
-    0)
-        PROMPT='${SCL}${C_BRACKETS}${BRAKETS:0:1}[${C_HOST}%m${C_BRACKETS}]${BRAKETS:1:1} ${C_ROOT}%#${C_RESET} '
-        ;;
-    *)
-        PROMPT='${SCL}${C_BRACKETS}${BRAKETS:0:1}[${C_HOST}%m${C_BRACKETS}]${BRAKETS:1:1} ${C_USER}%#${C_RESET} '
-        ;;
-esac
+# case ${UID} in
+#     0)
+#         PROMPT='${SCL}${C_BRACKETS}${BRAKETS:0:1}[${C_HOST}%m${C_BRACKETS}]${BRAKETS:1:1} ${C_ROOT}%#${C_RESET} '
+#         ;;
+#     *)
+#         PROMPT='${SCL}${C_BRACKETS}${BRAKETS:0:1}[${C_HOST}%m${C_BRACKETS}]${BRAKETS:1:1} ${C_USER}%#${C_RESET} '
+#         ;;
+# esac
 
 ## tmux session auto attach
 if [[ ${UID} -ne 0 ]]; then
@@ -184,3 +184,13 @@ fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# p10k 用プロンプト拡張
+function prompt_my_scl_status() {
+    scl_status=${X_SCLS}
+    if [[ $scl_status ]]; then
+        p10k segment -f yellow -t "[${scl_status}]"
+    else
+        p10k segment -t ""
+    fi
+}
