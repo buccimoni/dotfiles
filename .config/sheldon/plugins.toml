@@ -5,6 +5,10 @@ shell = "zsh"
 github = 'romkatv/zsh-defer'
 apply = ['source']
 
+[plugins.powerlevel10k]
+github = 'romkatv/powerlevel10k'
+apply = ['source']
+
 [plugins.zsh-syntax-highlighting]
 github = 'zsh-users/zsh-syntax-highlighting'
 apply = ['defer']
