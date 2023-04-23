@@ -103,11 +103,11 @@ C_RESET="%f%k"              # fore/back ground color reset
 BRAKETS=""
 
 ### for Software Collections
-if [ ${X_SCLS} ]; then
-    SCL="${C_SCL}[SCL]${C_RESET} "
-else
-    SCL=""
-fi
+# if [ ${X_SCLS} ]; then
+#     SCL="${C_SCL}[SCL]${C_RESET} "
+# else
+#     SCL=""
+# fi
 
 ### Define Prompt
 # case ${UID} in
@@ -174,7 +174,7 @@ fi
 ### enhancd の設定
 export ENHANCD_FILTER=fzf-tmux:fzf
 export ENHANCD_ENABLE_DOUBLE_DOT=false      # "cd .." で enhancd を使用 0:する 1:しない
-# export ENHANCD_DISABLE_HOME=1       # 引数無しの cd でインタラクティブフィルターを使用 0:する 1:しない
+export ENHANCD_DISABLE_HOME=0       # 引数無しの cd でインタラクティブフィルターを使用 0:する 1:しない
 
 # ホスト別のカスタムが出来るように
 zshrc_local=~/.zsh/.zshrc.local
@@ -187,10 +187,7 @@ fi
 
 # p10k 用プロンプト拡張
 function prompt_my_scl_status() {
-    scl_status=${X_SCLS}
-    if [[ $scl_status ]]; then
-        p10k segment -f yellow -t "[${scl_status}]"
-    else
-        p10k segment -t ""
+    if [[ $X_SCLS ]]; then
+        p10k segment -f yellow -t "[ ${X_SCLS}]"
     fi
 }
