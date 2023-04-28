@@ -1,3 +1,40 @@
+### tmux session auto attach
+if [[ ${UID} -ne 0 ]]; then
+    FZF=~/.local/share/sheldon/repos/github.com/junegunn/fzf/bin/fzf
+    if [[ ! -n $TMUX && $- == *l* ]]; then
+        create_new_session="Create New Session"
+        start_terminal_normally="Start terminal normally"
+        # get the IDs
+        ID="$(tmux list-sessions 2> /dev/null)"
+
+        if [[ -z "$ID" ]]; then
+            ID="${start_terminal_normally}\n${create_new_session}:"
+        else
+            ID="$ID\n${start_terminal_normally}\n${create_new_session}:"
+        fi
+
+        ID="`echo $ID | $FZF | cut -d: -f1`"
+
+        case "$ID" in
+            "${create_new_session}" )
+                tmux new-session
+                ;;
+
+            "${start_terminal_normally}" )
+                :   # through
+                ;;
+
+            [0-9]* )
+                tmux attach-session -t "$ID"
+                ;;
+
+            * )
+                :   # through
+                ;;
+        esac
+    fi
+fi
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -11,7 +48,7 @@ autoload -Uz colors && colors
 ## RPM パッケージ付属の関数を fpath に追加
 fpath=(/usr/share/zsh/site-functions $fpath) 
 
-## Load Plugins
+# Load Plugins
 eval "$(sheldon source)"
 
 ## zsh のオプション設定
@@ -119,43 +156,6 @@ BRAKETS=""
 #         ;;
 # esac
 
-## tmux session auto attach
-if [[ ${UID} -ne 0 ]]; then
-    FZF=~/.local/share/sheldon/repos/github.com/junegunn/fzf/bin/fzf
-    if [[ ! -n $TMUX && $- == *l* ]]; then
-        create_new_session="Create New Session"
-        start_terminal_normally="Start terminal normally"
-        
-        # get the IDs
-        ID="$(tmux list-sessions 2> /dev/null)"
-        
-        if [[ -z "$ID" ]]; then
-            ID="${start_terminal_normally}\n${create_new_session}:"
-        else
-            ID="$ID\n${start_terminal_normally}\n${create_new_session}:"
-        fi
-        
-        ID="`echo $ID | $FZF | cut -d: -f1`"
-        case "$ID" in
-            "${create_new_session}" )
-                tmux new-session
-                ;;
-                
-            "${start_terminal_normally}" )
-                :   # through
-                ;;
-                
-            [0-9]* )
-                tmux attach-session -t "$ID"
-                ;;
-                
-            * )
-                :   # through
-                ;;
-        esac
-    fi
-fi
-
 ### plugin を読み込んでパスを通す
 
 ## Plugin settings
@@ -191,3 +191,4 @@ function prompt_my_scl_status() {
         p10k segment -f yellow -t "[ ${X_SCLS}]"
     fi
 }
+
