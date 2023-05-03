@@ -46,7 +46,7 @@ autoload -Uz compinit && compinit
 autoload -Uz colors && colors
 
 ## RPM パッケージ付属の関数を fpath に追加
-fpath=(/usr/share/zsh/site-functions $fpath) 
+fpath=(/usr/share/zsh/vendor-completions /usr/share/zsh/site-functions $fpath) 
 
 # Load Plugins
 eval "$(sheldon source)"
