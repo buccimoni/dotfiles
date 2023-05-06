@@ -42,11 +42,11 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+## RPM パッケージ付属の関数を fpath に追加
+fpath=(/usr/share/zsh/vendor-completions(N-/) /usr/share/zsh/site-functions $fpath) 
+
 autoload -Uz compinit && compinit
 autoload -Uz colors && colors
-
-## RPM パッケージ付属の関数を fpath に追加
-fpath=(/usr/share/zsh/vendor-completions /usr/share/zsh/site-functions $fpath) 
 
 # Load Plugins
 eval "$(sheldon source)"
@@ -113,9 +113,9 @@ alias diff='/usr/bin/colordiff'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
-alias gpl='git pull'
-alias gca='git commit -a'
-alias gps='git push'
+# alias gpl='git pull'
+# alias gca='git commit -a'
+# alias gps='git push'
 
 ## Disable Commands
 disable r
