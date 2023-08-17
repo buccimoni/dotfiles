@@ -27,7 +27,8 @@ apply = ['fzf-install', 'fzf-source']
 
 [templates]
 PATH = 'export PATH="$PATH:{{ dir }}"'
-defer = "{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}"
+# defer = "{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}"
+defer = "{{ hooks | get: \"pre\" | nl }}{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}{{ hooks | get: \"post\" | nl }}"
 fzf-install = "{{ dir }}/install --bin > /dev/null \n[[ ! $PATH == *{{ dir }}* ]] && export PATH=\"$PATH:{{ dir }}/bin\"\n"
 fzf-source = "{% for file in files %}source \"{{ file }}\"\n{% endfor %}"
 
