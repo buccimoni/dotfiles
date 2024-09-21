@@ -53,7 +53,7 @@ set background=dark
 
 "" Plug と使用する plugin を記述
 call plug#begin()
-Plug 'vim-jp/vimdoc-ja'                 " Help in japanese
+" Plug 'vim-jp/vimdoc-ja'                 " Help in japanese
 Plug 'cocopon/iceberg.vim'              " (theme) Iceberg
 Plug 'tomasr/molokai'                   " (theme) molokai
 Plug 'vim-airline/vim-airline'          " (statusline) airline
