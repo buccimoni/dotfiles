@@ -65,6 +65,7 @@ Plug 'egberts/vim-syntax-bind-named'    " (syntax) ISC bind
 Plug 'tyru/caw.vim'                     " (edit) Comment Plugin
 Plug 'nathanaelkane/vim-indent-guides'  " add indent guide line.
 Plug 'osyo-manga/vim-over'              " subsutitue highlighter
+Plug 'breard-r/vim-dnsserial'           " DNSSerial
 Plug '~/.local/share/sheldon/repos/github.com/junegunn/fzf'
 Plug 'junegunn/fzf.vim'                 " 
 call plug#end()
