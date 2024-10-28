@@ -192,3 +192,5 @@ function prompt_my_scl_status() {
     fi
 }
 
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
+
