@@ -125,9 +125,13 @@ disable r
 # git clone https://github.com/rkitover/vimpager.git
 # cd vimpager
 # sudo make install
-export PAGER=/usr/local/bin/vimpager
-alias less=$PAGER
-alias zless=$PAGER
+# export PAGER=/usr/local/bin/vimpager
+# alias less=$PAGER
+# alias  zless=$PAGER
+
+## less options
+export LESS="-R"
+export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
 
 ## Prompt
 ### Color
